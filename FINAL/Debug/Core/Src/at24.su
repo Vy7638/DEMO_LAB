@@ -1,0 +1,6 @@
+at24.c:12:6:at24c_init	8	static
+at24.c:17:9:at24c_ReadOneByte	40	static
+at24.c:24:6:at24c_WriteOneByte	32	static
+at24.c:30:9:at24c_Check	16	static
+at24.c:45:6:at24c_Read	24	static
+at24.c:54:6:at24c_Write	16	static

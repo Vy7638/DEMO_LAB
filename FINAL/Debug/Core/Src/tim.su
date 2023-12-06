@@ -1,0 +1,3 @@
+tim.c:19:6:MX_TIM1_Init	32	static
+tim.c:64:6:MX_TIM2_Init	32	static
+tim.c:108:6:MX_TIM13_Init	40	static
