@@ -131,7 +131,7 @@ int main(void)
 		  flag_timer2 = 0;
 		  button_Scan();
 		  test_led();
-		  is_touch_right();
+
 	  }
     /* USER CODE BEGIN 3 */
   }
@@ -188,7 +188,8 @@ void system_init(){
 	  timer_init();
 	  button_init();
 	  lcd_init();
-	  pointTouch_init();
+	  pointTouch_init();		//khoi tao cac vi tri nhan
+	  snake_init();				//khoi tao ran
 	  //uart_init_esp();
 	  setTimer2(50);
 }

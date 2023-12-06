@@ -17,7 +17,8 @@ void highscore_lcd();			//hien thi ket qua cua nguoi choi diem cao nhat (co the 
 void game_lcd();				//man hinh game
 void game_over_lcd();			//hien thi ket qua
 
-void point_snake_lcd();			//ve 1 diem cua ran
-void point_clr();				//to de diem do thanh mau nen (ho tro ran di chuyen)
+void point_snake_lcd(struct Point snake);			//ve 1 diem cua ran
+void point_food_lcd(struct Point food);				//ve moi
+void point_clr(struct Point clr);				//to de diem do thanh mau nen (ho tro ran di chuyen)
 
 #endif /* INC_INTERFACE_H_ */

@@ -8,9 +8,7 @@
 #ifndef INC_SNAKE_H_
 #define INC_SNAKE_H_
 
-#include "main.h"
-
-#define MAX_LENGTH_SNAKE 	100
+#include "global.h"
 
 int is_collision();
 int is_eat();
