@@ -7,9 +7,38 @@
 
 #include "global.h"
 
+struct History history[MAX_HISTORY];
+uint8_t num_history = 2;
+
+uint32_t current_score = 10000;
+
 int status = 0;
 int length = 1;
 int move = 0;
+
+struct pointTouch {
+	int x_begin;
+	int x_end;
+	int y_begin;
+	int y_end;
+};
+
+struct Point snake[MAX_LENGTH_SNAKE];
+
+struct pointTouch pRight;
+struct pointTouch pLeft;
+struct pointTouch pUp;
+struct pointTouch pDown;
+
+struct pointTouch pQuit;
+struct pointTouch pPause;
+
+struct pointTouch pNewGame;
+struct pointTouch pHighScore;
+
+struct pointTouch pClassic;
+struct pointTouch pSpeed;
+struct pointTouch pTime;
 
 void pointTouch_init(){
 	pRight.x_begin = 0;

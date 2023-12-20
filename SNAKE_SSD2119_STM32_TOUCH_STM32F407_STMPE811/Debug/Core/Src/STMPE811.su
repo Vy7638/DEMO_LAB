@@ -1,0 +1,10 @@
+../Core/Src/STMPE811.c:8:6:STMPE811_init	8	static
+../Core/Src/STMPE811.c:35:6:STMPE811_write_byte	32	static
+../Core/Src/STMPE811.c:47:15:STMPE811_read_byte	32	static
+../Core/Src/STMPE811.c:62:6:STMPE811_write_word	32	static
+../Core/Src/STMPE811.c:75:14:STMPE811_read_word	40	static
+../Core/Src/STMPE811.c:96:14:STMPE811_read_x	16	static
+../Core/Src/STMPE811.c:106:14:STMPE811_read_y	16	static
+../Core/Src/STMPE811.c:116:6:STMPE811_get_touch	40	static
+../Core/Src/STMPE811.c:174:7:map	32	static
+../Core/Src/STMPE811.c:180:7:constrain	24	static

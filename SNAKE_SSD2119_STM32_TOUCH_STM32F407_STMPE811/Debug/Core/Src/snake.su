@@ -1,0 +1,8 @@
+../Core/Src/snake.c:106:6:printFrame	16	static
+../Core/Src/snake.c:118:6:initSnake	16	static
+../Core/Src/snake.c:164:16:moveSnake	32	static
+../Core/Src/snake.c:244:13:snakeGrow	4	static
+../Core/Src/snake.c:254:6:snakeTask	24	static
+../Core/Src/snake.c:333:6:calcDirection	16	static
+../Core/Src/snake.c:412:6:snakeOptions	8	static
+../Core/Src/snake.c:418:6:printDirections	24	static

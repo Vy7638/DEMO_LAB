@@ -1,0 +1,13 @@
+../Core/Src/touch.c:90:17:TP_Read_XOY	9
+../Core/Src/touch.c:115:16:TP_Read_XY	1
+../Core/Src/touch.c:144:13:TP_Drow_Touch_Point	1
+../Core/Src/touch.c:126:16:TP_Read_XY2.constprop	11
+../Core/Src/touch.c:199:16:TP_Scan	6
+../Core/Src/touch.c:239:16:TP_Get_Adjdata.isra	2
+../Core/Src/touch.c:381:6:touch_init	1
+../Core/Src/touch.c:253:6:touch_Adjust	13
+../Core/Src/touch.c:164:6:LCD_DrawRoughLine	8
+../Core/Src/touch.c:388:6:touch_Scan	1
+../Core/Src/touch.c:392:9:touch_IsTouched	1
+../Core/Src/touch.c:396:10:touch_GetX	1
+../Core/Src/touch.c:400:10:touch_GetY	1

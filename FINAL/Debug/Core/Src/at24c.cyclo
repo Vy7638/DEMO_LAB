@@ -1,0 +1,6 @@
+../Core/Src/at24c.c:12:6:at24c_init	1
+../Core/Src/at24c.c:17:9:at24c_ReadOneByte	1
+../Core/Src/at24c.c:24:6:at24c_WriteOneByte	1
+../Core/Src/at24c.c:30:9:at24c_Check	3
+../Core/Src/at24c.c:45:6:at24c_Read	2
+../Core/Src/at24c.c:54:6:at24c_Write	2

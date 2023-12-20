@@ -9,8 +9,8 @@
 
 
 int is_touch_right(){
-	if (pRight.x_begin == 3) {
-		pRight.y_end = 3;
-	}
-	return 1;
+//	if (pRight.x_begin == 3) {
+//		pRight.y_end = 3;
+//	}
+//	return 1;
 }

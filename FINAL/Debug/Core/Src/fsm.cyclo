@@ -1,0 +1,3 @@
+../Core/Src/fsm.c:12:6:input_inGame	12
+../Core/Src/fsm.c:42:6:input_process	16
+../Core/Src/fsm.c:98:6:fsm	8

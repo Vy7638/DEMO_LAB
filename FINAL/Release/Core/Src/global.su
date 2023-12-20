@@ -1,0 +1,2 @@
+../Core/Src/global.c:14:6:pointTouch_init	0	static
+../Core/Src/global.c:22:6:snake_init	0	static

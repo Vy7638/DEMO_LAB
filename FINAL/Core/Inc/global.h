@@ -8,8 +8,10 @@
 #ifndef INC_GLOBAL_H_
 #define INC_GLOBAL_H_
 
-#define HOME	0
+#include "main.h"
 
+// Dinh nghia cac man hinh
+#define HOME		0
 #define MODE 		1
 #define HIGHSCORE	2
 #define GAMEOVER	3
@@ -18,7 +20,19 @@
 #define SPEED		12
 #define TIME		13
 
+// Dinh nghia danh sach lich su
+#define MAX_HISTORY	9	// So lich su toi da duoc luu
+struct History{
+	char name[10];
+	uint16_t score;
+};
+extern struct History history[MAX_HISTORY];
+extern uint8_t num_history;
+
+extern uint32_t current_score;
+
 #define MAX_LENGTH_SNAKE 	100
+#define RADIUS_SNAKE		4
 
 #define	NOT			0
 #define RIGHT		1
@@ -35,29 +49,20 @@ struct Point{
 	int y;
 };
 
-struct pointTouch {
-	int x_begin;
-	int x_end;
-	int y_begin;
-	int y_end;
-};
+extern struct pointTouch pRight;
+extern struct pointTouch pLeft;
+extern struct pointTouch pUp;
+extern struct pointTouch pDown;
 
-struct Point snake[MAX_LENGTH_SNAKE];
+extern struct pointTouch pQuit;
+extern struct pointTouch pPause;
 
-struct pointTouch pRight;
-struct pointTouch pLeft;
-struct pointTouch pUp;
-struct pointTouch pDown;
+extern struct pointTouch pNewGame;
+extern struct pointTouch pHighScore;
 
-struct pointTouch pQuit;
-struct pointTouch pPause;
-
-struct pointTouch pNewGame;
-struct pointTouch pHighScore;
-
-struct pointTouch pClassic;
-struct pointTouch pSpeed;
-struct pointTouch pTime;
+extern struct pointTouch pClassic;
+extern struct pointTouch pSpeed;
+extern struct pointTouch pTime;
 
 void pointTouch_init();
 void snake_init();

@@ -1,2 +1,2 @@
-global.c:14:6:pointTouch_init	4	static
-global.c:22:6:snake_init	16	static
+../Core/Src/global.c:43:6:pointTouch_init	4	static
+../Core/Src/global.c:51:6:snake_init	16	static
