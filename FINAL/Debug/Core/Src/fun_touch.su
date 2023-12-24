@@ -1,1 +1,12 @@
-../Core/Src/fun_touch.c:11:5:is_touch_right	4	static
+../Core/Src/fun_touch.c:11:7:distance_of_two_point	24	static
+../Core/Src/fun_touch.c:16:5:is_touch_right	8	static
+../Core/Src/fun_touch.c:24:5:is_touch_left	8	static
+../Core/Src/fun_touch.c:33:5:is_touch_up	8	static
+../Core/Src/fun_touch.c:42:5:is_touch_down	8	static
+../Core/Src/fun_touch.c:51:5:is_touch_quit	8	static
+../Core/Src/fun_touch.c:60:5:is_touch_pause	16	static
+../Core/Src/fun_touch.c:66:5:is_touch_newGame	8	static
+../Core/Src/fun_touch.c:75:5:is_touch_highScore	8	static
+../Core/Src/fun_touch.c:84:5:is_touch_classic	8	static
+../Core/Src/fun_touch.c:93:5:is_touch_speed	8	static
+../Core/Src/fun_touch.c:102:5:is_touch_time	8	static

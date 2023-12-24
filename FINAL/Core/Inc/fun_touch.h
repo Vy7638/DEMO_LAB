@@ -10,6 +10,8 @@
 
 #include "global.h"
 #include "touch.h"
+#include "interface.h"
+#include <math.h>
 
 int is_touch_right();
 int is_touch_left();
