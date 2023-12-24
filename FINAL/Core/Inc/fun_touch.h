@@ -27,5 +27,6 @@ int is_touch_highScore();
 int is_touch_classic();
 int is_touch_speed();
 int is_touch_time();
+int is_touch_continue();
 
 #endif /* INC_FUN_TOUCH_H_ */

@@ -107,3 +107,12 @@ int is_touch_time()
 			&& touch_GetY() > POS_Y_THIRD
 			&& touch_GetY() < POS_Y_THIRD + HEIGHT);
 }
+
+int is_touch_continue()
+{
+	if (!touch_IsTouched()) return 0;
+	return (touch_GetX() > POS_X_THIRD
+			&& touch_GetX() < POS_X_THIRD + WIDTH
+			&& touch_GetY() > POS_Y_THIRD
+			&& touch_GetY() < POS_Y_THIRD + HEIGHT);
+}
