@@ -7,72 +7,89 @@
 
 #include "fsm.h"
 
-int tempMove;
+uint32_t counter = 0;
+
+void temp_game(){
+	tempFlag = 1;
+	tempStatus = status;
+	tempMove = move;
+}
+
+void continue_game(){
+	status = tempStatus;
+	move = tempMove;
+	reDraw_snake();
+}
 
 void input_inGame(){
 	if (is_touch_right() == 1 && move != LEFT){
 		move = RIGHT;
 	}
-	if (is_touch_left() == 1 && move != RIGHT){
+	else if (is_touch_left() == 1 && move != RIGHT){
 		move = LEFT;
 	}
-	if (is_touch_up() == 1 && move != DOWN){
+	else if (is_touch_up() == 1 && move != DOWN){
 		move = UP;
 	}
-	if (is_touch_down() == 1 && move != UP){
+	else if (is_touch_down() == 1 && move != UP){
 		move = DOWN;
 	}
-	if (is_touch_pause() == 1){
-		if (move == NOT){
-			move = tempMove;
-		}
-		else {
-			tempMove = move;
-			move = NOT;
-		}
-	}
-	if (is_touch_quit() == 1){
-		status = GAMEOVER;
+	else if (is_touch_pause() == 1){
+		temp_game();
 		move = NOT;
-		snake_init();
-		lcd_Clear(WHITE);
+		pause_lcd();
 	}
 }
 
 void input_process(){
 	switch (status) {
 		case HOME:
-			if (is_touch_newGame() == 1){
+			if (is_touch_newGame() == 1 || button_count[0] == 1){
+				tempFlag = 0;
 				status = MODE;
-				lcd_Clear(WHITE);
+				snake_init();
+				mode_game_lcd();
+			}
+			else if (is_touch_continue() == 1){
+				if (tempFlag == 1)
+					continue_game();
+				else {
+					home_second_lcd();
+				}
 			}
 			else if (is_touch_highScore() == 1){
 				status = HIGHSCORE;
-				lcd_Clear(WHITE);
+				highscore_lcd();
 			}
 			break;
 		case MODE:
 			if (is_touch_classic() == 1){
 				status = CLASSIC;
-				lcd_Clear(WHITE);
+				setTimer1(500);
+				game_lcd();
+				score_lcd();
 			}
 			else if (is_touch_speed() == 1){
 				status = SPEED;
-				lcd_Clear(WHITE);
+				setTimer1(500);
+				game_lcd();
+				score_lcd();
 			}
 			else if (is_touch_time() == 1){
-				status = MODE;
-				lcd_Clear(WHITE);
+				status = TIME;
+				setTimer1(500);
+				game_lcd();
+				score_lcd();
 			}
 			if (is_touch_quit() == 1){
 				status = HOME;
-				lcd_Clear(WHITE);
+				home_lcd();
 			}
 			break;
 		case HIGHSCORE:
 			if (is_touch_quit() == 1){
 				status = HOME;
-				lcd_Clear(WHITE);
+				home_lcd();
 			}
 			break;
 		case CLASSIC:
@@ -83,40 +100,108 @@ void input_process(){
 			break;
 		case TIME:
 			input_inGame();
+			counter = 0;
 			break;
 		case GAMEOVER:
-			if (is_touch_quit() == 1){
+			if (is_touch_quit_end() == 1){
 				status = MODE;
-				lcd_Clear(WHITE);
+				mode_game_lcd();
+			}
+			break;
+		case WIN:
+			if (is_touch_quit_end() == 1){
+				status = MODE;
+				mode_game_lcd();
+			}
+			break;
+		case PAUSE:
+			if (is_touch_quit_end() == 1){
+				status = MODE;
+				mode_game_lcd();
+			}
+			else if (is_touch_resume() == 1){
+				continue_game();
 			}
 			break;
 		default:
 			break;
 	}
 }
+//tinh toan cap nhat diem so
+void score_cal(){
+	current_score = current_score + (400 / counter_time_score) * 5 + 5;
+	counter_time_score = 0;
+	score_lcd();
+}
 
-void fsm(){
+void inGame(){
+	move_snake();
+	if (is_collision() == 1){
+		status = GAMEOVER;
+		snake_init();
+		game_over_lcd();
+	}
+	else if (is_eat() == 1){
+		length++;
+		score_cal();
+		rand_food();
+	}
+	else if (length == 100){
+		status = WIN;
+		youwin_lcd();
+		snake_init();
+	}
+}
+
+void fsm_ingame(){
 	switch (status) {
-		case HOME:
-			home_lcd();
-			break;
-		case MODE:
-			mode_game_lcd();
-			break;
-		case HIGHSCORE:
-			highscore_lcd();
-			break;
 		case CLASSIC:
-			game_lcd();
+			counter_time_score++;
+			if (flag_timer1 == 1){
+				flag_timer1 = 0;
+				inGame();
+			}
 			break;
 		case SPEED:
-			game_lcd();
+			counter_time_score++;
+			if (flag_timer1 == 1){
+				flag_timer1 = 0;
+				inGame();
+			}
+			if (length == 5){
+				setTimer1(200);
+			}
+			else if (length == 10){
+				setTimer1(100);
+			}
+			else if (length == 15){
+				setTimer1(50);
+			}
 			break;
 		case TIME:
-			game_lcd();
-			break;
-		case GAMEOVER:
-			game_over_lcd();
+			counter_time_score++;
+			if (++counter % 20 == 0){
+				counter_time--;
+				update_7seg_time();
+			}
+			if (flag_timer1 == 1){
+				flag_timer1 = 0;
+				inGame();
+			}
+			if (counter_time <= 50){
+				setTimer1(200);
+			}
+			else if (counter_time <= 35){
+				setTimer1(100);
+			}
+			else if (counter_time <= 20){
+				setTimer1(50);
+			}
+			else if (counter_time <= 0){
+				status = GAMEOVER;
+				game_over_lcd();
+				snake_init();
+			}
 			break;
 		default:
 			break;

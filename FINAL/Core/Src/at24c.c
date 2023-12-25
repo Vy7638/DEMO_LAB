@@ -7,6 +7,7 @@
 
 #include "at24c.h"
 
+
 static uint8_t at24c_Check(void);
 
 void at24c_init(void)

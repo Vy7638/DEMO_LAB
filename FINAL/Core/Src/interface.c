@@ -223,3 +223,27 @@ void point_food_lcd(struct Point food){
 void point_clr(struct Point clr){
 	lcd_DrawCircle(clr.x, clr.y, WHITE, RADIUS_SNAKE, 1);
 }
+
+void mode_7seg(){
+	led7_SetDigit(0, 1, 0);
+	led7_SetDigit(0, 3, 0);
+	led7_SetDigit(0, 4, 0);
+	switch (status) {
+		case CLASSIC:
+			led7_SetDigit(1, 2, 0);
+			break;
+		case SPEED:
+			led7_SetDigit(2, 2, 0);
+			break;
+		case TIME:
+			led7_SetDigit(3, 2, 0);
+			break;
+		default:
+			break;
+	}
+}
+
+void update_7seg_time(){
+	led7_SetDigit(counter_time / 10, 3, 0);
+	led7_SetDigit(counter_time % 10, 4, 0);
+}

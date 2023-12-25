@@ -9,6 +9,7 @@
 #define INC_INTERFACE_H_
 
 #include "lcd.h"
+#include "led_7seg.h"
 #include "global.h"
 #include "picture.h"
 
@@ -75,5 +76,8 @@ void point_head_lcd(struct Point head);		// Ve dau ran
 void point_snake_lcd(struct Point snake);	// Ve 1 diem cua ran
 void point_food_lcd(struct Point food);		// Ve moi
 void point_clr(struct Point clr);			// To de diem do thanh mau nen (ho tro ran di chuyen)
+
+void mode_7seg();
+void update_7seg_time();
 
 #endif /* INC_INTERFACE_H_ */

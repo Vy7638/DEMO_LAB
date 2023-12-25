@@ -12,13 +12,18 @@
 
 // Dinh nghia cac man hinh
 #define HOME		0
-#define MODE 		1
-#define HIGHSCORE	2
-#define GAMEOVER	3
+#define MODE 		1		//tu home bam newgame
+#define CONTINUE	2		//tu home bam continue
+#define HIGHSCORE	3		//tu home bam highscore
 
+#define NAME		10
 #define CLASSIC		11
 #define SPEED		12
 #define TIME		13
+
+#define PAUSE		21
+#define GAMEOVER	22
+#define WIN			23
 
 // Dinh nghia danh sach lich su
 #define MAX_HISTORY	9	// So lich su toi da duoc luu
@@ -42,29 +47,21 @@ extern uint32_t current_score;
 
 extern int status;
 extern int move;
-extern int length;
+extern uint32_t length;
+extern uint32_t counter_time_score;
+extern uint32_t counter_time;
 
 struct Point{
 	int x;
 	int y;
 };
+//cac bien tam luu tru trang thai cua ran
+extern int tempFlag;
+extern int tempStatus;
+extern int tempMove;
 
-extern struct pointTouch pRight;
-extern struct pointTouch pLeft;
-extern struct pointTouch pUp;
-extern struct pointTouch pDown;
 
-extern struct pointTouch pQuit;
-extern struct pointTouch pPause;
-
-extern struct pointTouch pNewGame;
-extern struct pointTouch pHighScore;
-
-extern struct pointTouch pClassic;
-extern struct pointTouch pSpeed;
-extern struct pointTouch pTime;
-
-void pointTouch_init();
-void snake_init();
+extern struct Point snake[MAX_LENGTH_SNAKE];
+extern struct Point food;
 
 #endif /* INC_GLOBAL_H_ */

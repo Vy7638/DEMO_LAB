@@ -57,6 +57,21 @@ int is_touch_quit()
 			&& touch_GetY() < POS_Y_FORTH + HEIGHT);
 }
 
+int is_touch_quit_end(){
+	if (!touch_IsTouched()) return 0;
+	return (touch_GetX() > POS_X_THIRD
+			&& touch_GetX() < POS_X_THIRD + WIDTH
+			&& touch_GetY() > POS_Y_THIRD
+			&& touch_GetY() < POS_Y_THIRD + HEIGHT);
+}
+
+int is_touch_resume(){
+	if (!touch_IsTouched()) return 0;
+		return (touch_GetX() > POS_X_SECOND
+				&& touch_GetX() < POS_X_SECOND + WIDTH
+				&& touch_GetY() > POS_Y_SECOND
+				&& touch_GetY() < POS_Y_SECOND + HEIGHT);
+}
 int is_touch_pause()
 {
 	if (!touch_IsTouched()) return 0;

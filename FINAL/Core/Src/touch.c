@@ -4,7 +4,6 @@
  *  Created on: Dec 6, 2023
  *      Author: ADMIN
  */
-
 #include "touch.h"
 #include "lcd.h"
 #include "at24c.h"
@@ -198,7 +197,8 @@ void LCD_DrawRoughLine(uint16_t x1,uint16_t y1,uint16_t x2,uint16_t y2,uint16_t 
 
 static uint8_t TP_Scan(uint8_t tp)
 {
-	if(HAL_GPIO_ReadPin(T_PEN_GPIO_Port, T_PEN_Pin) == GPIO_PIN_RESET)	{
+	if(HAL_GPIO_ReadPin(T_PEN_GPIO_Port, T_PEN_Pin) == GPIO_PIN_RESET)
+	{
 		if(tp)TP_Read_XY2(&tp_dev.x[0],&tp_dev.y[0]);
 		else if(TP_Read_XY2(&tp_dev.x[0],&tp_dev.y[0]))
 		{

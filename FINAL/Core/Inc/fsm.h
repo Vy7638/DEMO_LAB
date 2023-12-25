@@ -11,8 +11,11 @@
 #include "global.h"
 #include "lcd.h"
 #include "interface.h"
+#include "fun_touch.h"
+#include "button.h"
+#include "snake.h"
 
 void input_process();	//xu ly du lieu dau vao
-void fsm();
+void fsm_ingame();
 
 #endif /* INC_FSM_H_ */

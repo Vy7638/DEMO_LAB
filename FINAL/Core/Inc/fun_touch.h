@@ -19,6 +19,8 @@ int is_touch_up();			//di chuyen phai, trai, len, xuong
 int is_touch_down();
 
 int is_touch_quit();
+int is_touch_quit_end();
+int is_touch_resume();
 int is_touch_pause();
 
 int is_touch_newGame();

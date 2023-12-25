@@ -44,6 +44,8 @@
 #include "global.h"
 #include "snake.h"
 #include "interface.h"
+#include "fun_touch.h"
+#include "fsm.h"
 //#include "fsm.h"
 
 /* USER CODE END Includes */
@@ -121,45 +123,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   system_init();
-  home_lcd();
-  HAL_Delay(500);
-  home_second_lcd();
-		  HAL_Delay(500);
-		  home_third_lcd();
-		HAL_Delay(500);
-		home_forth_lcd();
-		  HAL_Delay(500);
-  mode_game_lcd();
-  HAL_Delay(500);
-		  mode_first_lcd();
-		  HAL_Delay(500);
-		  mode_second_lcd();
-		HAL_Delay(500);
-		mode_third_lcd();
-		  HAL_Delay(500);
-		  mode_forth_lcd();
-		  HAL_Delay(500);
 
-		  strcpy(history[0].name, "abc");
-		  history[0].score = 1000;
-		  strcpy(history[1].name, "def");
-		  history[1].score = 124;
-	highscore_lcd();
-		HAL_Delay(500);
-	game_lcd();
-		HAL_Delay(500);
-	score_lcd();
-		HAL_Delay(500);
-	pause_lcd();
-		HAL_Delay(500);
-		pause_second_lcd();
-		HAL_Delay(500);
-		pause_third_lcd();
-		HAL_Delay(500);
-	game_over_lcd();
-		HAL_Delay(1000);
-	youwin_lcd();
-		HAL_Delay(1000);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -167,7 +131,15 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  while (!flag_timer2);
+	  flag_timer2 = 0;
+	  touch_Scan();
+	  button_Scan();
 
+	  input_process();
+	  fsm_ingame();
+
+	  test_led();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -223,9 +195,22 @@ void system_init(){
 	  timer_init();
 	  button_init();
 	  lcd_init();
-	  pointTouch_init();		//khoi tao cac vi tri nhan
+	  touch_init();
+	  led7_init();
+	  button_init();
+
+	  home_lcd();				//hien thi man hinh vua moi dau
 	  snake_init();				//khoi tao ran
+
+	  //ds3231_init();
 	  //uart_init_esp();
+
+	  strcpy(history[0].name, "abc");
+	  history[0].score = 1000;
+	  strcpy(history[1].name, "def");
+	  history[1].score = 124;
+
+	  setTimer1(50);
 	  setTimer2(50);
 }
 
