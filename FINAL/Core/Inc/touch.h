@@ -1,8 +1,8 @@
 /*
  * touch.h
  *
- *  Created on: Dec 6, 2023
- *      Author: ADMIN
+ *  Created on: Sep 22, 2023
+ *      Author: phamv
  */
 
 #ifndef INC_TOUCH_H_

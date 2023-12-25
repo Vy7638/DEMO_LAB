@@ -54,7 +54,7 @@ void input_process(){
 				if (tempFlag == 1)
 					continue_game();
 				else {
-					home_second_lcd();
+					home_third_lcd();
 				}
 			}
 			else if (is_touch_highScore() == 1){
@@ -65,20 +65,23 @@ void input_process(){
 		case MODE:
 			if (is_touch_classic() == 1){
 				status = CLASSIC;
-				setTimer1(500);
+				setTimer3(500);
 				game_lcd();
+				reDraw_snake();
 				score_lcd();
 			}
 			else if (is_touch_speed() == 1){
 				status = SPEED;
-				setTimer1(500);
+				setTimer3(500);
 				game_lcd();
+				reDraw_snake();
 				score_lcd();
 			}
 			else if (is_touch_time() == 1){
 				status = TIME;
-				setTimer1(500);
+				setTimer3(500);
 				game_lcd();
+				reDraw_snake();
 				score_lcd();
 			}
 			if (is_touch_quit() == 1){
@@ -157,25 +160,25 @@ void fsm_ingame(){
 	switch (status) {
 		case CLASSIC:
 			counter_time_score++;
-			if (flag_timer1 == 1){
-				flag_timer1 = 0;
+			if (flag_timer3 == 1){
+				flag_timer3 = 0;
 				inGame();
 			}
 			break;
 		case SPEED:
 			counter_time_score++;
-			if (flag_timer1 == 1){
-				flag_timer1 = 0;
+			if (flag_timer3 == 1){
+				flag_timer3 = 0;
 				inGame();
 			}
 			if (length == 5){
-				setTimer1(200);
+				setTimer3(200);
 			}
 			else if (length == 10){
-				setTimer1(100);
+				setTimer3(100);
 			}
 			else if (length == 15){
-				setTimer1(50);
+				setTimer3(50);
 			}
 			break;
 		case TIME:
@@ -184,18 +187,18 @@ void fsm_ingame(){
 				counter_time--;
 				update_7seg_time();
 			}
-			if (flag_timer1 == 1){
-				flag_timer1 = 0;
+			if (flag_timer3 == 1){
+				flag_timer3 = 0;
 				inGame();
 			}
 			if (counter_time <= 50){
-				setTimer1(200);
+				setTimer3(200);
 			}
 			else if (counter_time <= 35){
-				setTimer1(100);
+				setTimer3(100);
 			}
 			else if (counter_time <= 20){
-				setTimer1(50);
+				setTimer3(50);
 			}
 			else if (counter_time <= 0){
 				status = GAMEOVER;

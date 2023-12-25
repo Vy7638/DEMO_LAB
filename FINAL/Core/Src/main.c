@@ -46,7 +46,6 @@
 #include "interface.h"
 #include "fun_touch.h"
 #include "fsm.h"
-//#include "fsm.h"
 
 /* USER CODE END Includes */
 
@@ -67,7 +66,11 @@
 /* Private variables ---------------------------------------------------------*/
 DMA_HandleTypeDef hdma_adc1;
 /* USER CODE BEGIN PV */
+#define INIT 0
+#define DRAW 1
+#define CLEAR 2
 
+int draw_Status = INIT;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -75,6 +78,8 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void system_init();
 void test_led();
+void touchProcess();
+uint8_t isButtonClear();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -125,21 +130,24 @@ int main(void)
   system_init();
 
   /* USER CODE END 2 */
-
+  //touch_Adjust();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-	  while (!flag_timer2);
-	  flag_timer2 = 0;
-	  touch_Scan();
-	  button_Scan();
+    /* USER CODE END WHILE*/
+	  //scan touch screen
 
-	  input_process();
-	  fsm_ingame();
 
-	  test_led();
+	  	  // 50ms task
+	  	  if(flag_timer2 == 1){
+	  		touch_Scan();
+	  		  flag_timer2 = 0;
+	  		  //touchProcess();
+	  		  input_process();
+	  		  fsm_ingame();
+	  		  test_led();
+	  	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -197,7 +205,6 @@ void system_init(){
 	  lcd_init();
 	  touch_init();
 	  led7_init();
-	  button_init();
 
 	  home_lcd();				//hien thi man hinh vua moi dau
 	  snake_init();				//khoi tao ran
@@ -210,10 +217,39 @@ void system_init(){
 	  strcpy(history[1].name, "def");
 	  history[1].score = 124;
 
-	  setTimer1(50);
+	  setTimer3(50);
 	  setTimer2(50);
 }
+uint8_t isButtonClear(){
+	if(!touch_IsTouched()) return 0;
+	return touch_GetX() > 60 && touch_GetX() < 180 && touch_GetY() > 10 && touch_GetY() < 60;
+}
 
+void touchProcess(){
+	switch (draw_Status) {
+		case INIT:
+                // display blue button
+			lcd_Fill(60, 10, 180, 60, GBLUE);
+			lcd_ShowStr(90, 20, "CLEAR", RED, BLACK, 24, 1);
+			draw_Status = DRAW;
+			break;
+		case DRAW:
+			if(isButtonClear()){
+				draw_Status = CLEAR;
+                    // clear board
+				lcd_Fill(0, 60, 240, 320, BLACK);
+                    // display green button
+				lcd_Fill(60, 10, 180, 60, GREEN);
+				lcd_ShowStr(90, 20, "CLEAR", RED, BLACK, 24, 1);
+			}
+			break;
+		case CLEAR:
+			if(!touch_IsTouched()) draw_Status = INIT;
+			break;
+		default:
+			break;
+	}
+}
 uint8_t counter_led = 0;
 
 void test_led(){

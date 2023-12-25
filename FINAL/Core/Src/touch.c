@@ -1,9 +1,10 @@
 /*
  * touch.c
  *
- *  Created on: Dec 6, 2023
- *      Author: ADMIN
+ *  Created on: Sep 22, 2023
+ *      Author: phamv
  */
+
 #include "touch.h"
 #include "lcd.h"
 #include "at24c.h"
@@ -400,3 +401,7 @@ uint16_t touch_GetX(){
 uint16_t touch_GetY(){
 	return tp_dev.y[0];
 }
+
+
+
+
