@@ -18,6 +18,10 @@ uint16_t flag_timer3 = 0;
 uint16_t timer3_counter = 0;
 uint16_t timer3_MUL = 0;
 
+//uint16_t flag_timer4 = 0;
+//uint16_t timer4_counter = 0;
+//uint16_t timer4_MUL = 0;
+
 void timer_init(){
 	HAL_TIM_Base_Start_IT(&htim2);
 	HAL_TIM_Base_Start(&htim1);
@@ -39,6 +43,12 @@ void setTimer3(uint16_t duration){
 	flag_timer3 = 0;
 }
 
+//void setTimer4(uint16_t duration){
+//	timer4_MUL = duration/TIMER_CYCLE_2;
+//	timer4_counter = timer4_MUL;
+//	flag_timer4 = 0;
+//}
+
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance == TIM2){
 		if(timer2_counter > 0){
@@ -55,6 +65,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 				timer3_counter = timer3_MUL;
 			}
 		}
+//		if(timer4_counter > 0){
+//			timer4_counter--;
+//			if(timer4_counter == 0) {
+//				flag_timer4 = 1;
+//				timer4_counter = timer4_MUL;
+//			}
+//		}
 		led7_Scan();
 	}
 }

@@ -77,6 +77,7 @@ void point_snake_lcd(struct Point snake);	// Ve 1 diem cua ran
 void point_food_lcd(struct Point food);		// Ve moi
 void point_clr(struct Point clr);			// To de diem do thanh mau nen (ho tro ran di chuyen)
 
+void reset_7seg();
 void mode_7seg();
 void update_7seg_time();
 

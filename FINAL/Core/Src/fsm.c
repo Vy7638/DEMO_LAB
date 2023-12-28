@@ -9,6 +9,14 @@
 
 uint32_t counter = 0;
 
+uint8_t confirm[4] = {0, 0, 0, 0};
+
+void clr_confirm(){
+	for (int i = 0; i < 4; i++){
+		confirm[i] = 0;
+	}
+}
+
 void temp_game(){
 	tempFlag = 1;
 	tempStatus = status;
@@ -16,9 +24,12 @@ void temp_game(){
 }
 
 void continue_game(){
-	status = tempStatus;
-	move = tempMove;
-	reDraw_snake();
+	if (tempFlag == 1){
+		status = tempStatus;
+		move = tempMove;
+		reDraw_snake();
+		point_food_lcd(food);
+	}
 }
 
 void input_inGame(){
@@ -36,6 +47,7 @@ void input_inGame(){
 	}
 	else if (is_touch_pause() == 1){
 		temp_game();
+		status = PAUSE;
 		move = NOT;
 		pause_lcd();
 	}
@@ -44,49 +56,109 @@ void input_inGame(){
 void input_process(){
 	switch (status) {
 		case HOME:
-			if (is_touch_newGame() == 1 || button_count[0] == 1){
-				tempFlag = 0;
-				status = MODE;
-				snake_init();
-				mode_game_lcd();
+			if (is_touch_newGame() == 1){
+				if (confirm[1] == 1){
+					clr_confirm();
+					status = MODE;
+					snake_init();
+					mode_game_lcd();
+				}
+				else {
+					clr_confirm();
+					confirm[1] = 1;
+					home_second_lcd();
+				}
 			}
 			else if (is_touch_continue() == 1){
-				if (tempFlag == 1)
+				if (confirm[2] == 1 && tempFlag == 1){
+					clr_confirm();
+					game_lcd();
 					continue_game();
+				}
 				else {
+					clr_confirm();
+					confirm[2] = 1;
 					home_third_lcd();
 				}
 			}
 			else if (is_touch_highScore() == 1){
-				status = HIGHSCORE;
-				highscore_lcd();
+				if (confirm[3] == 1){
+					clr_confirm();
+					status = HIGHSCORE;
+					highscore_lcd();
+				}
+				else {
+					clr_confirm();
+					confirm[3] = 1;
+					home_forth_lcd();
+				}
+
 			}
 			break;
 		case MODE:
 			if (is_touch_classic() == 1){
-				status = CLASSIC;
-				setTimer3(500);
-				game_lcd();
-				reDraw_snake();
-				score_lcd();
+				if (confirm[0] == 1){
+					clr_confirm();
+					status = CLASSIC;
+					setTimer3(500);
+					game_lcd();					//hien thi man hinh choi game
+					mode_7seg();				//ham hien thi che do choi tren led 7seg
+					reDraw_snake();				//ham goi ve con ran
+					point_food_lcd(food);
+					score_lcd();				//ham diem so
+				}
+				else {
+					clr_confirm();
+					confirm[0] = 1;
+					mode_first_lcd();
+				}
 			}
 			else if (is_touch_speed() == 1){
-				status = SPEED;
-				setTimer3(500);
-				game_lcd();
-				reDraw_snake();
-				score_lcd();
+				if (confirm[1] == 1){
+					clr_confirm();
+					status = SPEED;
+					setTimer3(500);
+					game_lcd();
+					mode_7seg();
+					reDraw_snake();
+					point_food_lcd(food);
+					score_lcd();
+				}
+				else {
+					clr_confirm();
+					confirm[1] = 1;
+					mode_second_lcd();
+				}
 			}
 			else if (is_touch_time() == 1){
-				status = TIME;
-				setTimer3(500);
-				game_lcd();
-				reDraw_snake();
-				score_lcd();
+				if (confirm[2] == 1){
+					clr_confirm();
+					status = TIME;
+					setTimer3(500);
+					game_lcd();
+					mode_7seg();
+					reDraw_snake();
+					point_food_lcd(food);
+					counter = 0;			//gia tri counter dem thoi gian duoc gan 0
+					score_lcd();
+				}
+				else {
+					clr_confirm();
+					confirm[2] = 1;
+					mode_third_lcd();
+				}
 			}
 			if (is_touch_quit() == 1){
-				status = HOME;
-				home_lcd();
+				if (confirm[3] == 1){
+					clr_confirm();
+					status = HOME;
+					home_lcd();
+				}
+				else {
+					clr_confirm();
+					confirm[3] = 1;
+					mode_forth_lcd();
+				}
 			}
 			break;
 		case HIGHSCORE:
@@ -103,26 +175,29 @@ void input_process(){
 			break;
 		case TIME:
 			input_inGame();
-			counter = 0;
 			break;
 		case GAMEOVER:
 			if (is_touch_quit_end() == 1){
 				status = MODE;
 				mode_game_lcd();
+				reset_7seg();						//thoat che do choi game led 7 se quay tro ve 0
 			}
 			break;
 		case WIN:
 			if (is_touch_quit_end() == 1){
 				status = MODE;
 				mode_game_lcd();
+				reset_7seg();
 			}
 			break;
 		case PAUSE:
 			if (is_touch_quit_end() == 1){
 				status = MODE;
 				mode_game_lcd();
+				reset_7seg();
 			}
 			else if (is_touch_resume() == 1){
+				game_lcd();
 				continue_game();
 			}
 			break;
@@ -138,7 +213,9 @@ void score_cal(){
 }
 
 void inGame(){
-	move_snake();
+	if (move != NOT){
+		move_snake();
+	}
 	if (is_collision() == 1){
 		status = GAMEOVER;
 		snake_init();

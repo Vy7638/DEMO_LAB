@@ -1,8 +1,8 @@
 snake.c:10:6:snake_init	16	static
-snake.c:24:5:is_collision_food	24	static
-snake.c:36:5:is_collision	16	static
-snake.c:48:5:is_eat	4	static
-snake.c:53:5:get_rand	24	static
-snake.c:57:6:rand_food	16	static
-snake.c:69:6:move_snake	16	static
-snake.c:93:6:reDraw_snake	16	static
+snake.c:25:5:is_collision_food	24	static
+snake.c:37:5:is_collision	16	static
+snake.c:49:5:is_eat	8	static
+snake.c:58:5:get_rand	24	static
+snake.c:62:6:rand_food	16	static
+snake.c:74:6:move_snake	16	static
+snake.c:99:6:reDraw_snake	16	static

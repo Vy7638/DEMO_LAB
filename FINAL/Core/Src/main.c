@@ -78,8 +78,6 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void system_init();
 void test_led();
-void touchProcess();
-uint8_t isButtonClear();
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -128,7 +126,7 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   system_init();
-
+  //uint32_t counterTouch = 0;
   /* USER CODE END 2 */
   //touch_Adjust();
   /* Infinite loop */
@@ -141,11 +139,17 @@ int main(void)
 
 	  	  // 50ms task
 	  	  if(flag_timer2 == 1){
-	  		touch_Scan();
 	  		  flag_timer2 = 0;
-	  		  //touchProcess();
+//	  		  if (++counterTouch % 2 == 0){
+//	  			  counterTouch = 0;
+//		  		  touch_Scan();
+//	  		  }
+	  		  touch_Scan();
+	  		  button_Scan();
+
 	  		  input_process();
 	  		  fsm_ingame();
+
 	  		  test_led();
 	  	  }
     /* USER CODE BEGIN 3 */
@@ -220,36 +224,7 @@ void system_init(){
 	  setTimer3(50);
 	  setTimer2(50);
 }
-uint8_t isButtonClear(){
-	if(!touch_IsTouched()) return 0;
-	return touch_GetX() > 60 && touch_GetX() < 180 && touch_GetY() > 10 && touch_GetY() < 60;
-}
 
-void touchProcess(){
-	switch (draw_Status) {
-		case INIT:
-                // display blue button
-			lcd_Fill(60, 10, 180, 60, GBLUE);
-			lcd_ShowStr(90, 20, "CLEAR", RED, BLACK, 24, 1);
-			draw_Status = DRAW;
-			break;
-		case DRAW:
-			if(isButtonClear()){
-				draw_Status = CLEAR;
-                    // clear board
-				lcd_Fill(0, 60, 240, 320, BLACK);
-                    // display green button
-				lcd_Fill(60, 10, 180, 60, GREEN);
-				lcd_ShowStr(90, 20, "CLEAR", RED, BLACK, 24, 1);
-			}
-			break;
-		case CLEAR:
-			if(!touch_IsTouched()) draw_Status = INIT;
-			break;
-		default:
-			break;
-	}
-}
 uint8_t counter_led = 0;
 
 void test_led(){

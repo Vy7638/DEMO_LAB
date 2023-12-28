@@ -224,10 +224,14 @@ void point_clr(struct Point clr){
 	lcd_DrawCircle(clr.x, clr.y, WHITE, RADIUS_SNAKE, 1);
 }
 
-void mode_7seg(){
+void reset_7seg(){
 	led7_SetDigit(0, 1, 0);
+	led7_SetDigit(0, 2, 0);
 	led7_SetDigit(0, 3, 0);
 	led7_SetDigit(0, 4, 0);
+}
+
+void mode_7seg(){
 	switch (status) {
 		case CLASSIC:
 			led7_SetDigit(1, 2, 0);

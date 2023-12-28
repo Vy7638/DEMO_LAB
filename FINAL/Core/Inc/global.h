@@ -12,7 +12,7 @@
 
 // Dinh nghia cac man hinh
 #define HOME		0
-#define MODE 		1		//tu home bam newgame
+#define MODE		1		//tu home bam newgame
 #define CONTINUE	2		//tu home bam continue
 #define HIGHSCORE	3		//tu home bam highscore
 
@@ -21,9 +21,9 @@
 #define SPEED		12
 #define TIME		13
 
-#define PAUSE		21
-#define GAMEOVER	22
-#define WIN			23
+#define PAUSE		15
+#define GAMEOVER	16
+#define WIN			17
 
 // Dinh nghia danh sach lich su
 #define MAX_HISTORY	9	// So lich su toi da duoc luu

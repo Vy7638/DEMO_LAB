@@ -20,5 +20,6 @@ interface.c:204:6:point_head_lcd	24	static
 interface.c:209:6:point_snake_lcd	32	static
 interface.c:219:6:point_food_lcd	24	static
 interface.c:223:6:point_clr	24	static
-interface.c:227:6:mode_7seg	8	static
-interface.c:246:6:update_7seg_time	8	static
+interface.c:227:6:reset_7seg	8	static
+interface.c:234:6:mode_7seg	8	static
+interface.c:250:6:update_7seg_time	8	static

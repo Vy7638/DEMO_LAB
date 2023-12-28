@@ -14,6 +14,7 @@ void snake_init(){
 		snake[i].x = 0;
 		snake[i].y = 0;
 	}
+	move = UP;
 	length = 1;
 	current_score = 0;
 	counter_time_score = 0;
@@ -46,7 +47,11 @@ int is_collision(){
 }
 
 int is_eat(){
-	if (snake[0].x == food.x && snake[0].y == food.y) return 1;
+	if (snake[0].x <= (food.x + 4) && snake[0].x >= (food.x - 4) &&
+		snake[0].y <= (food.y + 4) && snake[0].y >= (food.y - 4) ){
+		point_clr(food);
+		return 1;
+	}
 	return 0;
 }
 
@@ -74,20 +79,21 @@ void move_snake(){
 	}
 	switch (move) {
 		case RIGHT:
-			snake[0].x += 1;
+			snake[0].x += 7;
 			break;
 		case LEFT:
-			snake[0].x -= 1;
+			snake[0].x -= 7;
 			break;
 		case UP:
-			snake[0].y += 1;
+			snake[0].y -= 7;
 			break;
 		case DOWN:
-			snake[0].y -= 1;
+			snake[0].y += 7;
 			break;
 		default:
 			break;
 	}
+	reDraw_snake();
 }
 
 void reDraw_snake(){
