@@ -58,7 +58,8 @@ void highscore_lcd(){
 
 void game_lcd(){
 	lcd_Clear(WHITE);
-	lcd_Fill(0, 200, 239, 319, LGRAYBLUE);
+	lcd_Fill(0, 0, 239, POS_Y_MIN - 1, LGRAYBLUE);
+	lcd_Fill(0, POS_Y_MAX + 1, 239, 319, LGRAYBLUE);
 	lcd_Fill(POS_X_LEFT, POS_Y_LEFT,
 			POS_X_LEFT + BTN_WIDTH, POS_Y_LEFT + BTN_HEIGHT, BROWN);
 	lcd_Fill(POS_X_RIGHT, POS_Y_RIGHT,
@@ -68,8 +69,19 @@ void game_lcd(){
 	lcd_Fill(POS_X_DOWN, POS_Y_DOWN,
 			POS_X_DOWN + BTN_WIDTH, POS_Y_DOWN + BTN_HEIGHT, BROWN);
 	lcd_DrawCircle(POS_X_PAUSE, POS_Y_PAUSE, RED, BTN_HEIGHT/2, 1);
+	lcd_ShowStr(POS_X_TEMP, POS_Y_TEMP, "TEMP:", BLACK, BLACK, 12, 1);
+	lcd_ShowStr(POS_X_TEMP + 65, POS_Y_TEMP, "oC", BLACK, BLACK, 12, 1);
+	lcd_ShowStr(POS_X_HUM, POS_Y_TEMP, "HUM:", BLACK, BLACK, 12, 1);
+	lcd_ShowStr(POS_X_HUM + 40, POS_Y_TEMP, "%", BLACK, BLACK, 12, 1);
+	lcd_ShowStr(POS_X_LIGHT, POS_Y_TEMP, "LIGHT:", BLACK, BLACK, 12, 1);
 	lcd_ShowStr(POS_X_PAUSE - 18, POS_Y_PAUSE - 8, "PAUSE", BLACK, BLACK, 16, 1);
 	lcd_ShowStr(POS_X_CURSCORE, POS_Y_CURSCORE, "SCORE:", BLACK, BLACK, 16, 1);
+}
+
+void environment_lcd(){
+	lcd_ShowFloatNum(POS_X_TEMP + 30, POS_Y_TEMP, current_temp, 4, BLACK, LGRAYBLUE, 12);
+	lcd_ShowIntNum(POS_X_HUM + 25, POS_Y_TEMP, current_hum, 2, BLACK, LGRAYBLUE, 12);
+	lcd_ShowIntNum(POS_X_LIGHT + 37, POS_Y_TEMP, current_light, 4, BLACK, LGRAYBLUE, 12);
 }
 
 void score_lcd(){
@@ -106,6 +118,51 @@ void youwin_lcd(){
 	lcd_DrawRectangle(POS_X_THIRD + 1, POS_Y_THIRD + 1,
 			POS_X_THIRD + WIDTH - 1, POS_Y_THIRD + HEIGHT - 1, BLACK);
 	lcd_ShowStr(POS_X_THIRD + 35, POS_Y_THIRD + 5, "QUIT", BLACK, BLACK, 24, 1);
+}
+
+void uppercase_lcd(){
+	for(uint8_t i = 0; i < CHAR_ROW; i++){
+		for(uint8_t j = 0; j < CHAR_COL; j++){
+			lcd_ShowChar(POS_X_CHAR + j * CHAR_WIDTH + 16, POS_Y_CHAR + i * CHAR_HEIGHT + 10, char_upper[i][j], BLACK, BROWN, 16, 0);
+		}
+	}
+}
+
+void lowercase_lcd(){
+	for(uint8_t i = 0; i < CHAR_ROW; i++){
+		for(uint8_t j = 0; j < CHAR_COL; j++){
+			lcd_ShowChar(POS_X_CHAR + j * CHAR_WIDTH + 16, POS_Y_CHAR + i * CHAR_HEIGHT + 10, char_lower[i][j], BLACK, BROWN, 16, 0);
+		}
+	}
+}
+
+void selectbox_lcd(){
+	lcd_DrawRectangle(POS_X_CHAR + index_y_old * CHAR_WIDTH, POS_Y_CHAR + index_x_old * CHAR_HEIGHT,
+			POS_X_CHAR + (index_y_old + 1) * CHAR_WIDTH, POS_Y_CHAR + (index_x_old + 1) * CHAR_HEIGHT, GRAY);
+	lcd_DrawRectangle(POS_X_CHAR + index_y * CHAR_WIDTH, POS_Y_CHAR + index_x * CHAR_HEIGHT,
+			POS_X_CHAR + (index_y + 1) * CHAR_WIDTH, POS_Y_CHAR + (index_x + 1) * CHAR_HEIGHT, BLACK);
+	index_x_old = index_x;
+	index_y_old = index_y;
+}
+
+void entername_lcd(){
+	lcd_Fill(POS_X_CHAR, POS_Y_CHAR,
+			POS_X_CHAR + CHAR_COL*CHAR_WIDTH, POS_Y_CHAR + CHAR_ROW*CHAR_HEIGHT, BROWN);
+	for(uint8_t i = 0; i < CHAR_ROW; i++){
+		for(uint8_t j = 0; j < CHAR_COL; j++){
+			lcd_DrawRectangle(POS_X_CHAR + j * CHAR_WIDTH, POS_Y_CHAR + i * CHAR_HEIGHT,
+					POS_X_CHAR + (j + 1) * CHAR_WIDTH, POS_Y_CHAR + (i + 1) * CHAR_HEIGHT, GRAY);
+		}
+	}
+	uppercase_lcd();
+	HAL_Delay(3000);
+	lowercase_lcd();
+	HAL_Delay(3000);
+	selectbox_lcd();
+	index_x = 4;
+	index_y = 3;
+	HAL_Delay(3000);
+	selectbox_lcd();
 }
 
 void home_not_select(){

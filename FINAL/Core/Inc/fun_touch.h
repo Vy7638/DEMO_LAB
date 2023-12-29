@@ -15,7 +15,7 @@
 
 int is_touch_right();
 int is_touch_left();
-int is_touch_up();			//di chuyen phai, trai, len, xuong
+int is_touch_up();			// Di chuyen phai, trai, len, xuong
 int is_touch_down();
 
 int is_touch_quit();
@@ -24,11 +24,11 @@ int is_touch_resume();
 int is_touch_pause();
 
 int is_touch_newGame();
+int is_touch_continue();
 int is_touch_highScore();
 
 int is_touch_classic();
 int is_touch_speed();
 int is_touch_time();
-int is_touch_continue();
 
 #endif /* INC_FUN_TOUCH_H_ */

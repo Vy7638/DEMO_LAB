@@ -1,8 +1,9 @@
-fsm.c:14:6:clr_confirm	16	static
-fsm.c:20:6:temp_game	4	static
-fsm.c:26:6:continue_game	8	static
-fsm.c:35:6:input_inGame	8	static
-fsm.c:56:6:input_process	8	static
-fsm.c:209:6:score_cal	8	static
-fsm.c:215:6:inGame	8	static
-fsm.c:236:6:fsm_ingame	8	static
+../Core/Src/fsm.c:14:6:clr_confirm	16	static
+../Core/Src/fsm.c:20:6:temp_game	4	static
+../Core/Src/fsm.c:26:6:continue_game	8	static
+../Core/Src/fsm.c:36:6:input_inGame	8	static
+../Core/Src/fsm.c:53:6:input_process	8	static
+../Core/Src/fsm.c:207:6:environment_cal	8	static
+../Core/Src/fsm.c:216:6:score_cal	8	static
+../Core/Src/fsm.c:222:6:inGame	8	static
+../Core/Src/fsm.c:241:6:fsm_ingame	8	static

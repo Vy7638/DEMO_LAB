@@ -8,8 +8,7 @@
 #include "fun_touch.h"
 
 // Tinh khoang cach hai diem
-float distance_of_two_point(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
-{
+float distance_of_two_point(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2){
 	return sqrt(pow((x1 - x2), 2) + pow((y1 - y2), 2));
 }
 
@@ -21,8 +20,7 @@ int is_touch_right(){
 			&& touch_GetY() < POS_Y_RIGHT + BTN_HEIGHT);
 }
 
-int is_touch_left()
-{
+int is_touch_left(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_LEFT
 			&& touch_GetX() < POS_X_LEFT + BTN_WIDTH
@@ -30,8 +28,7 @@ int is_touch_left()
 			&& touch_GetY() < POS_Y_LEFT + BTN_HEIGHT);
 }
 
-int is_touch_up()
-{
+int is_touch_up(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_UP
 			&& touch_GetX() < POS_X_UP + BTN_WIDTH
@@ -39,8 +36,7 @@ int is_touch_up()
 			&& touch_GetY() < POS_Y_UP + BTN_HEIGHT);
 }
 
-int is_touch_down()
-{
+int is_touch_down(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_DOWN
 			&& touch_GetX() < POS_X_DOWN + BTN_WIDTH
@@ -48,8 +44,7 @@ int is_touch_down()
 			&& touch_GetY() < POS_Y_DOWN + BTN_HEIGHT);
 }
 
-int is_touch_quit()
-{
+int is_touch_quit(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_FORTH
 			&& touch_GetX() < POS_X_FORTH + WIDTH
@@ -67,19 +62,18 @@ int is_touch_quit_end(){
 
 int is_touch_resume(){
 	if (!touch_IsTouched()) return 0;
-		return (touch_GetX() > POS_X_SECOND
-				&& touch_GetX() < POS_X_SECOND + WIDTH
-				&& touch_GetY() > POS_Y_SECOND
-				&& touch_GetY() < POS_Y_SECOND + HEIGHT);
+	return (touch_GetX() > POS_X_SECOND
+			&& touch_GetX() < POS_X_SECOND + WIDTH
+			&& touch_GetY() > POS_Y_SECOND
+			&& touch_GetY() < POS_Y_SECOND + HEIGHT);
 }
-int is_touch_pause()
-{
+
+int is_touch_pause(){
 	if (!touch_IsTouched()) return 0;
 	return distance_of_two_point(touch_GetX(), touch_GetY(), POS_X_PAUSE, POS_Y_PAUSE) < BTN_HEIGHT / 2;
 }
 
-int is_touch_newGame()
-{
+int is_touch_newGame(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_SECOND
 			&& touch_GetX() < POS_X_SECOND + WIDTH
@@ -87,35 +81,7 @@ int is_touch_newGame()
 			&& touch_GetY() < POS_Y_SECOND + HEIGHT);
 }
 
-int is_touch_highScore()
-{
-	if (!touch_IsTouched()) return 0;
-	return (touch_GetX() > POS_X_FORTH
-			&& touch_GetX() < POS_X_FORTH + WIDTH
-			&& touch_GetY() > POS_Y_FORTH
-			&& touch_GetY() < POS_Y_FORTH + HEIGHT);
-}
-
-int is_touch_classic()
-{
-	if (!touch_IsTouched()) return 0;
-	return (touch_GetX() > POS_X_FIRST
-			&& touch_GetX() < POS_X_FIRST + WIDTH
-			&& touch_GetY() > POS_Y_FIRST
-			&& touch_GetY() < POS_Y_FIRST + HEIGHT);
-}
-
-int is_touch_speed()
-{
-	if (!touch_IsTouched()) return 0;
-	return (touch_GetX() > POS_X_SECOND
-			&& touch_GetX() < POS_X_SECOND + WIDTH
-			&& touch_GetY() > POS_Y_SECOND
-			&& touch_GetY() < POS_Y_SECOND + HEIGHT);
-}
-
-int is_touch_time()
-{
+int is_touch_continue(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_THIRD
 			&& touch_GetX() < POS_X_THIRD + WIDTH
@@ -123,8 +89,31 @@ int is_touch_time()
 			&& touch_GetY() < POS_Y_THIRD + HEIGHT);
 }
 
-int is_touch_continue()
-{
+int is_touch_highScore(){
+	if (!touch_IsTouched()) return 0;
+	return (touch_GetX() > POS_X_FORTH
+			&& touch_GetX() < POS_X_FORTH + WIDTH
+			&& touch_GetY() > POS_Y_FORTH
+			&& touch_GetY() < POS_Y_FORTH + HEIGHT);
+}
+
+int is_touch_classic(){
+	if (!touch_IsTouched()) return 0;
+	return (touch_GetX() > POS_X_FIRST
+			&& touch_GetX() < POS_X_FIRST + WIDTH
+			&& touch_GetY() > POS_Y_FIRST
+			&& touch_GetY() < POS_Y_FIRST + HEIGHT);
+}
+
+int is_touch_speed(){
+	if (!touch_IsTouched()) return 0;
+	return (touch_GetX() > POS_X_SECOND
+			&& touch_GetX() < POS_X_SECOND + WIDTH
+			&& touch_GetY() > POS_Y_SECOND
+			&& touch_GetY() < POS_Y_SECOND + HEIGHT);
+}
+
+int is_touch_time(){
 	if (!touch_IsTouched()) return 0;
 	return (touch_GetX() > POS_X_THIRD
 			&& touch_GetX() < POS_X_THIRD + WIDTH

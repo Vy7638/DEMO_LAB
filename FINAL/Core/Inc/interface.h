@@ -12,6 +12,7 @@
 #include "led_7seg.h"
 #include "global.h"
 #include "picture.h"
+#include "name.h"
 
 #define POS_X_FIRST 65		// Toa do x goc tren ben trai CLASSIC
 #define POS_Y_FIRST 100		// Toa do y goc tren ben trai CLASSIC
@@ -31,46 +32,53 @@
 #define SPACE		16		// Khoang cach den dong tiep theo
 
 #define POS_X_MIN	0		// Toa do x nho nhat ran duoc di chuyen
-#define POS_Y_MIN	0		// Toa do y nho nhat ran duoc di chuyen
+#define POS_Y_MIN	18		// Toa do y nho nhat ran duoc di chuyen
 #define POS_X_MAX	239		// Toa do x lon nhat ran duoc di chuyen
 #define POS_Y_MAX	199		// Toa do y lon nhat ran duoc di chuyen
 
-#define POS_X_LEFT	5
-#define POS_Y_LEFT	265
-#define POS_X_RIGHT	165
-#define POS_Y_RIGHT	265
-#define POS_X_UP	85
-#define POS_Y_UP	205
-#define POS_X_DOWN	85
-#define POS_Y_DOWN	265
+#define POS_X_LEFT	5		// Toa do x goc tren ben trai nut di chuyen trai
+#define POS_Y_LEFT	265		// Toa do y goc tren ben trai nut di chuyen trai
+#define POS_X_RIGHT	165		// Toa do x goc tren ben trai nut di chuyen phai
+#define POS_Y_RIGHT	265		// Toa do y goc tren ben trai nut di chuyen phai
+#define POS_X_UP	85		// Toa do x goc tren ben trai nut di chuyen len
+#define POS_Y_UP	205		// Toa do y goc tren ben trai nut di chuyen len
+#define POS_X_DOWN	85		// Toa do x goc tren ben trai nut di chuyen xuong
+#define POS_Y_DOWN	265		// Toa do y goc tren ben trai nut di chuyen xuong
 
-#define POS_X_PAUSE		200
-#define POS_Y_PAUSE		230
-#define POS_X_CURSCORE	5
-#define POS_Y_CURSCORE	205
-#define BTN_WIDTH		70
-#define BTN_HEIGHT		50
+#define POS_X_TEMP	10		// Toa do x dat chu TEMP
+#define POS_X_HUM	110		// Toa do x dat chu HUM
+#define POS_X_LIGHT	170		// Toa do x dat chu LIGHT
+#define POS_Y_TEMP	3		// Toa do y dat chu TEMP
 
-void home_lcd(); 				// Man hinh chinh khi chua bat dau game
-void mode_game_lcd();			// Lua chon che do choi
-void highscore_lcd();			// Hien thi ket qua cua nguoi choi diem cao nhat (10 nguoi)
-void game_lcd();				// Man hinh game
-void score_lcd();				// Hien thi diem hien tai
-void pause_lcd();				// Man hinh tam ngung
-void game_over_lcd();			// Hien thi ket qua thua
-void youwin_lcd();				// Hien thi ket qua thang
+#define POS_X_PAUSE		200		// Toa do x dat chu PAUSE
+#define POS_Y_PAUSE		230		// Toa do y dat chu PAUSE
+#define POS_X_CURSCORE	5		// Toa do x dat diem so hien tai
+#define POS_Y_CURSCORE	205		// Toa do y dat diem so hien tai
+#define BTN_WIDTH		70		// Chieu rong nut di chuyen
+#define BTN_HEIGHT		50		// Chieu dai nut di chuyen
 
-void home_second_lcd();
-void home_third_lcd();
-void home_forth_lcd();
+void home_lcd(); 			// Man hinh chinh khi chua bat dau game
+void mode_game_lcd();		// Lua chon che do choi
+void highscore_lcd();		// Hien thi ket qua cua nguoi choi diem cao nhat (9 nguoi)
+void game_lcd();			// Man hinh game
+void environment_lcd();		// Hien thi thong tin moi truong hien tai
+void score_lcd();			// Hien thi diem hien tai
+void pause_lcd();			// Man hinh tam ngung
+void game_over_lcd();		// Hien thi ket qua thua
+void youwin_lcd();			// Hien thi ket qua thang
+void entername_lcd();		// Man hinh nhap ten
 
-void mode_first_lcd();
-void mode_second_lcd();
-void mode_third_lcd();
-void mode_forth_lcd();
+void home_second_lcd();		// Khung bao quanh NEWGAME
+void home_third_lcd();		// Khung bao quanh CONTINUE
+void home_forth_lcd();		// Khung bao quanh HIGHSCORE
 
-void pause_second_lcd();
-void pause_third_lcd();
+void mode_first_lcd();		// Khung bao quanh CLASSIC
+void mode_second_lcd();		// Khung bao quanh SPEED
+void mode_third_lcd();		// Khung bao quanh TIME
+void mode_forth_lcd();		// Khung bao quanh QUIT
+
+void pause_second_lcd();	// Khung bao quanh RESUME
+void pause_third_lcd();		// Khung bao quanh QUIT
 
 void point_head_lcd(struct Point head);		// Ve dau ran
 void point_snake_lcd(struct Point snake);	// Ve 1 diem cua ran

@@ -1,3 +1,9 @@
-../Core/Src/fsm.c:12:6:input_inGame	12
-../Core/Src/fsm.c:42:6:input_process	16
-../Core/Src/fsm.c:98:6:fsm	8
+../Core/Src/fsm.c:14:6:clr_confirm	2
+../Core/Src/fsm.c:20:6:temp_game	1
+../Core/Src/fsm.c:26:6:continue_game	2
+../Core/Src/fsm.c:36:6:input_inGame	15
+../Core/Src/fsm.c:53:6:input_process	45
+../Core/Src/fsm.c:207:6:environment_cal	1
+../Core/Src/fsm.c:216:6:score_cal	1
+../Core/Src/fsm.c:222:6:inGame	5
+../Core/Src/fsm.c:241:6:fsm_ingame	19

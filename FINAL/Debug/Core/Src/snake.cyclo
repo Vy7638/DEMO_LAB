@@ -1,0 +1,8 @@
+../Core/Src/snake.c:10:6:snake_init	2
+../Core/Src/snake.c:25:5:is_collision_food	8
+../Core/Src/snake.c:37:5:is_collision	8
+../Core/Src/snake.c:49:5:is_eat	5
+../Core/Src/snake.c:58:5:get_rand	1
+../Core/Src/snake.c:62:6:rand_food	2
+../Core/Src/snake.c:74:6:move_snake	6
+../Core/Src/snake.c:99:6:reDraw_snake	2

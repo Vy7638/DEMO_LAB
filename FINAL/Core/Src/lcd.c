@@ -196,7 +196,7 @@ void lcd_ShowChar(uint16_t x,uint16_t y,uint8_t character,uint16_t fc,uint16_t b
 	lcd_AddressSet(x,y,x+sizex-1,y+sizey-1);
 	for(i=0;i<TypefaceNum;i++)
 	{
-		if(sizey==12);
+		if(sizey==12)temp=ascii_1206[character][i];
 		else if(sizey==16)temp=ascii_1608[character][i];
 		else if(sizey==24)temp=ascii_2412[character][i];
 		else if(sizey==32)temp=ascii_3216[character][i];
@@ -483,7 +483,7 @@ void lcd_ShowStr(uint16_t x, uint16_t y,char *str,uint16_t fc, uint16_t bc,uint8
 	{
 		if(!bHz)
 		{
-			if(x>(lcddev.width-sizey/2)||y>(lcddev.height-sizey)) return;
+//			if(x>(lcddev.width-sizey/2)||y>(lcddev.height-sizey)) return;
 			if(*str>0x80)bHz=1;
 			else
 			{

@@ -10,6 +10,7 @@
 
 #include "global.h"
 #include "lcd.h"
+#include "sensor.h"
 #include "interface.h"
 #include "fun_touch.h"
 #include "button.h"

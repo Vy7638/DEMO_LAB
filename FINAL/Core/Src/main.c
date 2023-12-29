@@ -133,25 +133,24 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  // Scan touch screen
+	  // 50ms task
+	  if(flag_timer2 == 1){
+		  flag_timer2 = 0;
+//		  if(++counterTouch % 2 == 0){
+//			  counterTouch = 0;
+//			  touch_Scan();
+//		  }
+		  touch_Scan();
+		  button_Scan();
+
+		  input_process();
+		  fsm_ingame();
+
+		  test_led();
+	  }
     /* USER CODE END WHILE*/
-	  //scan touch screen
 
-
-	  	  // 50ms task
-	  	  if(flag_timer2 == 1){
-	  		  flag_timer2 = 0;
-//	  		  if (++counterTouch % 2 == 0){
-//	  			  counterTouch = 0;
-//		  		  touch_Scan();
-//	  		  }
-	  		  touch_Scan();
-	  		  button_Scan();
-
-	  		  input_process();
-	  		  fsm_ingame();
-
-	  		  test_led();
-	  	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -207,26 +206,26 @@ void system_init(){
 	  timer_init();
 	  button_init();
 	  lcd_init();
+	  sensor_init();
 	  touch_init();
 	  led7_init();
-
-	  home_lcd();				//hien thi man hinh vua moi dau
-	  snake_init();				//khoi tao ran
-
 	  //ds3231_init();
 	  //uart_init_esp();
+
+	  home_lcd();		// Hien thi man hinh vua moi dau
+	  snake_init();		// Khoi tao ran
 
 	  strcpy(history[0].name, "abc");
 	  history[0].score = 1000;
 	  strcpy(history[1].name, "def");
 	  history[1].score = 124;
 
-	  setTimer3(50);
 	  setTimer2(50);
+	  setTimer3(50);
+	  setTimer4(3000);
 }
 
 uint8_t counter_led = 0;
-
 void test_led(){
 	if (++counter_led % 20 == 0){
 		HAL_GPIO_TogglePin(DEBUG_LED_GPIO_Port, DEBUG_LED_Pin);
