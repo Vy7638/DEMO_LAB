@@ -31,4 +31,6 @@ int is_touch_classic();
 int is_touch_speed();
 int is_touch_time();
 
+int is_touch_char();
+
 #endif /* INC_FUN_TOUCH_H_ */

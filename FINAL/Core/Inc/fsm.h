@@ -15,8 +15,9 @@
 #include "fun_touch.h"
 #include "button.h"
 #include "snake.h"
+#include "user.h"
 
-void input_process();	//xu ly du lieu dau vao
+void input_process();	// Xu ly du lieu dau vao
 void fsm_ingame();
 
 #endif /* INC_FSM_H_ */

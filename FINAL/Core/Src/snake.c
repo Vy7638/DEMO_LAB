@@ -47,9 +47,10 @@ int is_collision(){
 }
 
 int is_eat(){
-	if (snake[0].x <= (food.x + 4) && snake[0].x >= (food.x - 4) &&
-		snake[0].y <= (food.y + 4) && snake[0].y >= (food.y - 4) ){
+	if (snake[0].x <= (food.x + 6) && snake[0].x >= (food.x - 6) &&
+		snake[0].y <= (food.y + 6) && snake[0].y >= (food.y - 6) ){
 		point_clr(food);
+		reDraw_snake();
 		return 1;
 	}
 	return 0;

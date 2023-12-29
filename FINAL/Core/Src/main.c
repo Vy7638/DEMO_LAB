@@ -146,8 +146,7 @@ int main(void)
 
 		  input_process();
 		  fsm_ingame();
-
-		  test_led();
+		  update_7seg_time();
 	  }
     /* USER CODE END WHILE*/
 
@@ -214,15 +213,12 @@ void system_init(){
 
 	  home_lcd();		// Hien thi man hinh vua moi dau
 	  snake_init();		// Khoi tao ran
-
-	  strcpy(history[0].name, "abc");
-	  history[0].score = 1000;
-	  strcpy(history[1].name, "def");
-	  history[1].score = 124;
+	  reset_7seg();
 
 	  setTimer2(50);
 	  setTimer3(50);
 	  setTimer4(3000);
+	  setTimer5(1000);
 }
 
 uint8_t counter_led = 0;

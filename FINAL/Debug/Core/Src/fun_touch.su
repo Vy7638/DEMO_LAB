@@ -13,3 +13,4 @@
 ../Core/Src/fun_touch.c:100:5:is_touch_classic	8	static
 ../Core/Src/fun_touch.c:108:5:is_touch_speed	8	static
 ../Core/Src/fun_touch.c:116:5:is_touch_time	8	static
+../Core/Src/fun_touch.c:124:5:is_touch_char	8	static

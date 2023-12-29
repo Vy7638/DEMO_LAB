@@ -12,7 +12,7 @@
 #include "led_7seg.h"
 #include "global.h"
 #include "picture.h"
-#include "name.h"
+#include "software_timer.h"
 
 #define POS_X_FIRST 65		// Toa do x goc tren ben trai CLASSIC
 #define POS_Y_FIRST 100		// Toa do y goc tren ben trai CLASSIC
@@ -30,6 +30,9 @@
 #define POS_X_SCORE	160		// Toa do x dat chu SCORE
 #define POS_Y_RANK	80		// Toa do y dat chu RANK
 #define SPACE		16		// Khoang cach den dong tiep theo
+
+#define POS_Y_INFO	100		// Toa do y dat thong tin thang/thua
+#define SPACE_INFO	20		// Khoang cach giua hai dong
 
 #define POS_X_MIN	0		// Toa do x nho nhat ran duoc di chuyen
 #define POS_Y_MIN	18		// Toa do y nho nhat ran duoc di chuyen
@@ -57,6 +60,15 @@
 #define BTN_WIDTH		70		// Chieu rong nut di chuyen
 #define BTN_HEIGHT		50		// Chieu dai nut di chuyen
 
+#define POS_X_CHAR	6		// Toa do x goc tren ben trai o dau tien nhap chu
+#define POS_Y_CHAR	124		// Toa do y goc tren ben trai o dau tien nhap chu
+#define CHAR_WIDTH	38		// Chieu rong o nhap chu
+#define CHAR_HEIGHT	38		// Chieu dai o nhap chu
+
+#define POS_X_DISP	47		// Toa do x hien thi ten nguoi choi
+#define POS_Y_DISP	80		// Toa do y hien thi ten nguoi choi
+#define SPACE_DISP	15		// Khoang cach giua hai chu cai
+
 void home_lcd(); 			// Man hinh chinh khi chua bat dau game
 void mode_game_lcd();		// Lua chon che do choi
 void highscore_lcd();		// Hien thi ket qua cua nguoi choi diem cao nhat (9 nguoi)
@@ -67,6 +79,11 @@ void pause_lcd();			// Man hinh tam ngung
 void game_over_lcd();		// Hien thi ket qua thua
 void youwin_lcd();			// Hien thi ket qua thang
 void entername_lcd();		// Man hinh nhap ten
+
+void uppercase_lcd();
+void lowercase_lcd();
+void selectbox_lcd();
+void displayName_lcd();
 
 void home_second_lcd();		// Khung bao quanh NEWGAME
 void home_third_lcd();		// Khung bao quanh CONTINUE
@@ -85,8 +102,8 @@ void point_snake_lcd(struct Point snake);	// Ve 1 diem cua ran
 void point_food_lcd(struct Point food);		// Ve moi
 void point_clr(struct Point clr);			// To de diem do thanh mau nen (ho tro ran di chuyen)
 
-void reset_7seg();
 void mode_7seg();
+void reset_7seg();
 void update_7seg_time();
 
 #endif /* INC_INTERFACE_H_ */

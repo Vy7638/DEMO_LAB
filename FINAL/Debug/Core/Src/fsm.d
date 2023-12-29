@@ -37,9 +37,9 @@ Core/Src/fsm.o: ../Core/Src/fsm.c ../Core/Inc/fsm.h ../Core/Inc/global.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/lcd.h ../Core/Inc/sensor.h ../Core/Inc/adc.h \
  ../Core/Inc/interface.h ../Core/Inc/led_7seg.h ../Core/Inc/spi.h \
- ../Core/Inc/picture.h ../Core/Inc/name.h ../Core/Inc/fun_touch.h \
- ../Core/Inc/touch.h ../Core/Inc/software_timer.h ../Core/Inc/tim.h \
- ../Core/Inc/button.h ../Core/Inc/snake.h
+ ../Core/Inc/picture.h ../Core/Inc/software_timer.h ../Core/Inc/tim.h \
+ ../Core/Inc/fun_touch.h ../Core/Inc/touch.h ../Core/Inc/button.h \
+ ../Core/Inc/snake.h ../Core/Inc/user.h
 ../Core/Inc/fsm.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
@@ -86,10 +86,10 @@ Core/Src/fsm.o: ../Core/Src/fsm.c ../Core/Inc/fsm.h ../Core/Inc/global.h \
 ../Core/Inc/led_7seg.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/picture.h:
-../Core/Inc/name.h:
-../Core/Inc/fun_touch.h:
-../Core/Inc/touch.h:
 ../Core/Inc/software_timer.h:
 ../Core/Inc/tim.h:
+../Core/Inc/fun_touch.h:
+../Core/Inc/touch.h:
 ../Core/Inc/button.h:
 ../Core/Inc/snake.h:
+../Core/Inc/user.h:

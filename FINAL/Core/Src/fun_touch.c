@@ -120,3 +120,11 @@ int is_touch_time(){
 			&& touch_GetY() > POS_Y_THIRD
 			&& touch_GetY() < POS_Y_THIRD + HEIGHT);
 }
+
+int is_touch_char(){
+	if (!touch_IsTouched()) return 0;
+	return (touch_GetX() > POS_X_CHAR
+			&& touch_GetX() < POS_X_CHAR + CHAR_COL*CHAR_WIDTH
+			&& touch_GetY() > POS_Y_CHAR
+			&& touch_GetY() < POS_Y_CHAR + CHAR_ROW*CHAR_HEIGHT);
+}

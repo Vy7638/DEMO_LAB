@@ -21,7 +21,8 @@ void home_lcd(){
 }
 
 void mode_game_lcd(){
-	lcd_ShowPicture(0, 0, 240, 320, gImage_mode);
+	lcd_ShowPicture(0, 0, 240, 320, gImage_backg);
+	lcd_ShowPicture(0, 0, 240, 78, gImage_mode);
 	lcd_Fill(POS_X_FIRST, POS_Y_FIRST,
 				 POS_X_FIRST + WIDTH, POS_Y_FIRST + HEIGHT, BROWN);
 	lcd_Fill(POS_X_SECOND, POS_Y_SECOND,
@@ -37,7 +38,8 @@ void mode_game_lcd(){
 }
 
 void highscore_lcd(){
-	lcd_ShowPicture(0, 0, 240, 320, gImage_highscore);
+	lcd_ShowPicture(0, 0, 240, 320, gImage_backg);
+	lcd_ShowPicture(0, 0, 240, 81, gImage_highscore);
 	lcd_ShowStr(POS_X_RANK, POS_Y_RANK, "RANK", BLACK, BLACK, 16, 1);
 	lcd_ShowStr(POS_X_NAME, POS_Y_RANK, "NAME", BLACK, BLACK, 16, 1);
 	lcd_ShowStr(POS_X_SCORE, POS_Y_RANK, "SCORE", BLACK, BLACK, 16, 1);
@@ -89,7 +91,8 @@ void score_lcd(){
 }
 
 void pause_lcd(){
-	lcd_ShowPicture(0, 0, 240, 320, gImage_pause);
+	lcd_ShowPicture(0, 0, 240, 320, gImage_backg);
+	lcd_ShowPicture(0, 0, 240, 84, gImage_pause);
 	lcd_Fill(POS_X_SECOND, POS_Y_SECOND,
 			POS_X_SECOND + WIDTH, POS_Y_SECOND + HEIGHT, BROWN);
 	lcd_Fill(POS_X_THIRD, POS_Y_THIRD,
@@ -100,24 +103,38 @@ void pause_lcd(){
 
 void game_over_lcd(){
 	lcd_ShowPicture(0, 0, 240, 320, gImage_gameover);
-	lcd_Fill(POS_X_THIRD, POS_Y_THIRD,
-			POS_X_THIRD + WIDTH, POS_Y_THIRD + HEIGHT, BROWN);
-	lcd_DrawRectangle(POS_X_THIRD, POS_Y_THIRD,
-			POS_X_THIRD + WIDTH, POS_Y_THIRD + HEIGHT, BLACK);
-	lcd_DrawRectangle(POS_X_THIRD + 1, POS_Y_THIRD + 1,
-			POS_X_THIRD + WIDTH - 1, POS_Y_THIRD + HEIGHT - 1, BLACK);
-	lcd_ShowStr(POS_X_THIRD + 35, POS_Y_THIRD + 5, "QUIT", BLACK, BLACK, 24, 1);
+	lcd_Fill(POS_X_FORTH, POS_Y_FORTH,
+			POS_X_FORTH + WIDTH, POS_Y_FORTH + HEIGHT, BROWN);
+	lcd_DrawRectangle(POS_X_FORTH, POS_Y_FORTH,
+			POS_X_FORTH + WIDTH, POS_Y_FORTH + HEIGHT, BLACK);
+	lcd_DrawRectangle(POS_X_FORTH + 1, POS_Y_FORTH + 1,
+			POS_X_FORTH + WIDTH - 1, POS_Y_FORTH + HEIGHT - 1, BLACK);
+	lcd_ShowStr(POS_X_FORTH + 35, POS_Y_FORTH + 5, "QUIT", BLACK, BLACK, 24, 1);
+	char c[10] = "";
+	lcd_StrCenter(0, POS_Y_INFO, "USER", BLACK, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + SPACE_INFO, name, DARKBLUE, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 2 * SPACE_INFO, "SCORE", BLACK, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 3 * SPACE_INFO, itoa(current_score, c, 10), DARKBLUE, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 4 * SPACE_INFO, "TIME PLAYED", BLACK, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 5 * SPACE_INFO, itoa(current_time, c, 10), DARKBLUE, BROWN, 16, 1);
 }
 
 void youwin_lcd(){
 	lcd_ShowPicture(0, 0, 240, 320, gImage_youwin);
-	lcd_Fill(POS_X_THIRD, POS_Y_THIRD,
-			POS_X_THIRD + WIDTH, POS_Y_THIRD + HEIGHT, BROWN);
-	lcd_DrawRectangle(POS_X_THIRD, POS_Y_THIRD,
-			POS_X_THIRD + WIDTH, POS_Y_THIRD + HEIGHT, BLACK);
-	lcd_DrawRectangle(POS_X_THIRD + 1, POS_Y_THIRD + 1,
-			POS_X_THIRD + WIDTH - 1, POS_Y_THIRD + HEIGHT - 1, BLACK);
-	lcd_ShowStr(POS_X_THIRD + 35, POS_Y_THIRD + 5, "QUIT", BLACK, BLACK, 24, 1);
+	lcd_Fill(POS_X_FORTH, POS_Y_FORTH,
+			POS_X_FORTH + WIDTH, POS_Y_FORTH + HEIGHT, BROWN);
+	lcd_DrawRectangle(POS_X_FORTH, POS_Y_FORTH,
+			POS_X_FORTH + WIDTH, POS_Y_FORTH + HEIGHT, BLACK);
+	lcd_DrawRectangle(POS_X_FORTH + 1, POS_Y_FORTH + 1,
+			POS_X_FORTH + WIDTH - 1, POS_Y_FORTH + HEIGHT - 1, BLACK);
+	lcd_ShowStr(POS_X_FORTH + 35, POS_Y_FORTH + 5, "QUIT", BLACK, BLACK, 24, 1);
+	char c[10] = "";
+	lcd_StrCenter(0, POS_Y_INFO, "USER", BLACK, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + SPACE_INFO, name, DARKBLUE, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 2 * SPACE_INFO, "SCORE", BLACK, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 3 * SPACE_INFO, itoa(current_score, c, 10), DARKBLUE, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 4 * SPACE_INFO, "TIME PLAYED", BLACK, BROWN, 16, 1);
+	lcd_StrCenter(0, POS_Y_INFO + 5 * SPACE_INFO, itoa(current_time, c, 10), DARKBLUE, BROWN, 16, 1);
 }
 
 void uppercase_lcd(){
@@ -137,15 +154,25 @@ void lowercase_lcd(){
 }
 
 void selectbox_lcd(){
-	lcd_DrawRectangle(POS_X_CHAR + index_y_old * CHAR_WIDTH, POS_Y_CHAR + index_x_old * CHAR_HEIGHT,
-			POS_X_CHAR + (index_y_old + 1) * CHAR_WIDTH, POS_Y_CHAR + (index_x_old + 1) * CHAR_HEIGHT, GRAY);
-	lcd_DrawRectangle(POS_X_CHAR + index_y * CHAR_WIDTH, POS_Y_CHAR + index_x * CHAR_HEIGHT,
-			POS_X_CHAR + (index_y + 1) * CHAR_WIDTH, POS_Y_CHAR + (index_x + 1) * CHAR_HEIGHT, BLACK);
-	index_x_old = index_x;
-	index_y_old = index_y;
+	lcd_DrawRectangle(POS_X_CHAR + index_c_old * CHAR_WIDTH, POS_Y_CHAR + index_r_old * CHAR_HEIGHT,
+			POS_X_CHAR + (index_c_old + 1) * CHAR_WIDTH, POS_Y_CHAR + (index_r_old + 1) * CHAR_HEIGHT, GRAY);
+	lcd_DrawRectangle(POS_X_CHAR + index_c * CHAR_WIDTH, POS_Y_CHAR + index_r * CHAR_HEIGHT,
+			POS_X_CHAR + (index_c + 1) * CHAR_WIDTH, POS_Y_CHAR + (index_r + 1) * CHAR_HEIGHT, BLACK);
+	index_r_old = index_r;
+	index_c_old = index_c;
+}
+
+void displayName_lcd(){
+	for(uint8_t i = 0; i < name_length; i++){
+		lcd_ShowChar(POS_X_DISP + i * SPACE_DISP, POS_Y_DISP, name[i], BLACK, BROWN, 24, 0);
+	}
+	for(uint8_t i = name_length; i < 10; i++){
+		lcd_ShowChar(POS_X_DISP + i * SPACE_DISP, POS_Y_DISP, '_', BLACK, BROWN, 24, 0);
+	}
 }
 
 void entername_lcd(){
+	lcd_ShowPicture(0, 0, 240, 320, gImage_select);
 	lcd_Fill(POS_X_CHAR, POS_Y_CHAR,
 			POS_X_CHAR + CHAR_COL*CHAR_WIDTH, POS_Y_CHAR + CHAR_ROW*CHAR_HEIGHT, BROWN);
 	for(uint8_t i = 0; i < CHAR_ROW; i++){
@@ -154,15 +181,12 @@ void entername_lcd(){
 					POS_X_CHAR + (j + 1) * CHAR_WIDTH, POS_Y_CHAR + (i + 1) * CHAR_HEIGHT, GRAY);
 		}
 	}
-	uppercase_lcd();
-	HAL_Delay(3000);
+	index_r = 0;
+	index_c = 0;
+	flag_uppercase = 0;
 	lowercase_lcd();
-	HAL_Delay(3000);
 	selectbox_lcd();
-	index_x = 4;
-	index_y = 3;
-	HAL_Delay(3000);
-	selectbox_lcd();
+	displayName_lcd();
 }
 
 void home_not_select(){
@@ -281,30 +305,46 @@ void point_clr(struct Point clr){
 	lcd_DrawCircle(clr.x, clr.y, WHITE, RADIUS_SNAKE, 1);
 }
 
-void reset_7seg(){
-	led7_SetDigit(0, 1, 0);
-	led7_SetDigit(0, 2, 0);
-	led7_SetDigit(0, 3, 0);
-	led7_SetDigit(0, 4, 0);
-}
-
 void mode_7seg(){
-	switch (status) {
+	switch(status){
 		case CLASSIC:
-			led7_SetDigit(1, 2, 0);
+			led7_SetDigit(1, 0, 1);
 			break;
 		case SPEED:
-			led7_SetDigit(2, 2, 0);
+			led7_SetDigit(2, 0, 1);
 			break;
 		case TIME:
-			led7_SetDigit(3, 2, 0);
+			led7_SetDigit(3, 0, 1);
 			break;
 		default:
 			break;
 	}
 }
 
+void reset_7seg(){
+	led7_SetDigit(0, 0, 0);
+	led7_SetDigit(0, 1, 0);
+	led7_SetDigit(0, 2, 0);
+	led7_SetDigit(0, 3, 0);
+}
+
 void update_7seg_time(){
-	led7_SetDigit(counter_time / 10, 3, 0);
-	led7_SetDigit(counter_time % 10, 4, 0);
+	if(flag_timer5 == 1 && flag_user == FLAG_PLAYING){
+		flag_timer5 = 0;
+		current_time++;
+		switch(status){
+			case CLASSIC:
+			case SPEED:
+				led7_SetDigit(current_time / 100, 1, 0);
+				led7_SetDigit((current_time % 100) / 10, 2, 0);
+				led7_SetDigit(current_time % 10, 3, 0);
+				break;
+			case TIME:
+				counter_time--;
+				led7_SetDigit(counter_time / 100, 1, 0);
+				led7_SetDigit((counter_time % 100) / 10, 2, 0);
+				led7_SetDigit(counter_time % 10, 3, 0);
+				break;
+		}
+	}
 }

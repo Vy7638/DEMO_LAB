@@ -1,0 +1,2 @@
+../Core/Src/user.c:10:6:user_init	8	static
+../Core/Src/user.c:21:6:user_history	24	static

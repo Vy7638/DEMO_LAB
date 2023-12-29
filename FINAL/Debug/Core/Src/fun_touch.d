@@ -38,7 +38,7 @@ Core/Src/fun_touch.o: ../Core/Src/fun_touch.c ../Core/Inc/fun_touch.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/touch.h ../Core/Inc/software_timer.h ../Core/Inc/tim.h \
  ../Core/Inc/led_7seg.h ../Core/Inc/spi.h ../Core/Inc/interface.h \
- ../Core/Inc/lcd.h ../Core/Inc/picture.h ../Core/Inc/name.h
+ ../Core/Inc/lcd.h ../Core/Inc/picture.h
 ../Core/Inc/fun_touch.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
@@ -86,4 +86,3 @@ Core/Src/fun_touch.o: ../Core/Src/fun_touch.c ../Core/Inc/fun_touch.h \
 ../Core/Inc/interface.h:
 ../Core/Inc/lcd.h:
 ../Core/Inc/picture.h:
-../Core/Inc/name.h:

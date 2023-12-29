@@ -7,8 +7,6 @@
 
 #include "fsm.h"
 
-uint32_t counter = 0;
-
 uint8_t confirm[4] = {0, 0, 0, 0};
 
 void clr_confirm(){
@@ -21,6 +19,7 @@ void temp_game(){
 	tempFlag = 1;
 	tempStatus = status;
 	tempMove = move;
+	flag_user = FLAG_PAUSE;
 }
 
 void continue_game(){
@@ -30,6 +29,7 @@ void continue_game(){
 		reDraw_snake();
 		point_food_lcd(food);
 		score_lcd();
+		flag_user = FLAG_PLAYING;
 	}
 }
 
@@ -50,6 +50,70 @@ void input_inGame(){
 	}
 }
 
+void input_enterName(){
+	flag_change = 1;
+	if(is_touch_char() == 1){
+		index_r = (touch_GetY() - POS_Y_CHAR)/CHAR_HEIGHT;
+		index_c = (touch_GetX() - POS_X_CHAR)/CHAR_WIDTH;
+	}else{
+		if(button_count[1] == 1){
+			if(index_r > 0) index_r--;
+		}else if(button_count[9] == 1){
+			if(index_r < CHAR_ROW - 1) index_r++;
+		}else if(button_count[4] == 1){
+			if(index_c > 0) index_c--;
+		}else if(button_count[6] == 1){
+			if(index_c < CHAR_COL - 1) index_c++;
+		}else if(button_count[5] == 1){
+			index_r = index_r_old;
+			index_c = index_c_old;
+		}else{
+			flag_change = 0;
+		}
+	}
+	if(flag_change == 1){
+		if(index_r == index_r_old && index_c == index_c_old){
+			if(index_r == IDX_R_UPPER && index_c == IDX_C_UPPER){
+				if(flag_uppercase == 1){
+					flag_uppercase = 0;
+					lowercase_lcd();
+				}else{
+					flag_uppercase = 1;
+					uppercase_lcd();
+				}
+			}else if(index_r == IDX_R_DEL && index_c == IDX_C_DEL){
+				if(name_length > 0){
+					name_length--;
+					name[name_length] = '\0';
+					displayName_lcd();
+				}
+			}else if(index_r == IDX_R_ENTR && index_c == IDX_C_ENTR){
+				if(name_length > 0){
+					status = tempStatus;
+					setTimer3(500);
+					game_lcd();					// Hien thi man hinh choi game
+					mode_7seg();				// Ham hien thi che do choi tren led 7seg
+					reDraw_snake();				// Ham goi ve con ran
+					point_food_lcd(food);
+					environment_lcd();			// Ham moi truong
+					score_lcd();				// Ham diem so
+					flag_user = FLAG_PLAYING;
+					return;
+				}
+			}else if(name_length < 10){
+				if(flag_uppercase == 1){
+					name[name_length] = char_upper[index_r][index_c];
+				}else{
+					name[name_length] = char_lower[index_r][index_c];
+				}
+				name_length++;
+				displayName_lcd();
+			}
+		}
+		selectbox_lcd();
+	}
+}
+
 void input_process(){
 	switch(status){
 		case HOME:
@@ -57,6 +121,7 @@ void input_process(){
 				if(confirm[1] == 1){
 					clr_confirm();
 					status = MODE;
+					user_init();
 					snake_init();
 					mode_game_lcd();
 				}else{
@@ -115,7 +180,6 @@ void input_process(){
 					tempStatus = TIME;
 					status = NAME;
 					entername_lcd();
-					counter = 0;			// Gia tri counter dem thoi gian duoc gan 0
 				}else{
 					clr_confirm();
 					confirm[2] = 1;
@@ -150,29 +214,21 @@ void input_process(){
 			input_inGame();
 			break;
 		case GAMEOVER:
-			if(is_touch_quit_end() == 1 || button_count[3] == 1){
+			if(is_touch_quit() == 1 || button_count[3] == 1){
 				status = HOME;
 				home_lcd();
 				reset_7seg();				// Thoat che do choi game led 7 se quay tro ve 0
 			}
 			break;
 		case WIN:
-			if(is_touch_quit_end() == 1 || button_count[3] == 1){
+			if(is_touch_quit() == 1 || button_count[3] == 1){
 				status = HOME;
 				home_lcd();
 				reset_7seg();
 			}
 			break;
 		case NAME:
-			HAL_Delay(3000);
-				status = tempStatus;
-				setTimer3(500);
-				game_lcd();					// Hien thi man hinh choi game
-				mode_7seg();				// Ham hien thi che do choi tren led 7seg
-				reDraw_snake();				// Ham goi ve con ran
-				point_food_lcd(food);
-				environment_lcd();			// Ham moi truong
-				score_lcd();				// Ham diem so
+			input_enterName();
 			break;
 		case PAUSE:
 			if(is_touch_quit_end() == 1 || button_count[7] == 1){
@@ -180,7 +236,6 @@ void input_process(){
 					clr_confirm();
 					status = HOME;
 					home_lcd();
-					reset_7seg();
 				}else{
 					clr_confirm();
 					confirm[2] = 1;
@@ -226,6 +281,7 @@ void inGame(){
 	if(is_collision() == 1){
 		status = GAMEOVER;
 		game_over_lcd();
+		user_history();
 		snake_init();
 	}else if(is_eat() == 1){
 		length++;
@@ -234,6 +290,7 @@ void inGame(){
 	}else if(length == MAX_LENGTH_SNAKE){
 		status = WIN;
 		youwin_lcd();
+		user_history();
 		snake_init();
 	}
 }
@@ -271,10 +328,6 @@ void fsm_ingame(){
 			break;
 		case TIME:
 			counter_time_score++;
-			if(++counter % 20 == 0){
-				counter_time--;
-				update_7seg_time();
-			}
 			if(flag_timer4 == 1){
 				flag_timer4 = 0;
 				environment_cal();
@@ -282,15 +335,16 @@ void fsm_ingame(){
 			if(flag_timer3 == 1){
 				flag_timer3 = 0;
 				inGame();
-				if(counter_time <= 50){
+				if(counter_time == 50){
 					setTimer3(200);
-				}else if(counter_time <= 35){
+				}else if(counter_time == 35){
 					setTimer3(100);
-				}else if(counter_time <= 20){
+				}else if(counter_time == 20){
 					setTimer3(50);
 				}else if(counter_time <= 0){
 					status = WIN;
 					youwin_lcd();
+					user_history();
 					snake_init();
 				}
 			}
