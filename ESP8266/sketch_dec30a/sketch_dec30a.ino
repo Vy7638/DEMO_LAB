@@ -13,7 +13,7 @@
 //fill your username                   
 #define AIO_USERNAME    "Vy2908"
 //fill your key
-#define AIO_KEY         "aio_UuOm04gIgQ5LDAKzcvXRDHwIcLMb"
+#define AIO_KEY         "aio_sEDK69C7olFoY0RNSQrEj4tCJm11"
 
 //setup MQTT
 WiFiClient client;
@@ -30,10 +30,6 @@ Adafruit_MQTT_Publish light_pub = Adafruit_MQTT_Publish(&mqtt, AIO_USERNAME "/fe
 
 int led_counter = 0;
 int led_status = HIGH;
-
-int temp_light = 0;
-int temp_hum = 0;
-int temp_temp = 0;
 
 // void lightcallback(char* value, uint16_t len){
 //   if(value[0] == '0') Serial.print('a');
@@ -82,27 +78,14 @@ void loop() {
     if(msg == 'o') Serial.print('O');
     else if (msg == 'A') live_pub.publish(1);
     else if (msg == 'a') live_pub.publish(0);
-    else if (msg == 'L') temp_light = 1;
-    else if (msg == 'T') temp_temp = 1;
-    else if (msg == 'H') temp_hum = 1;
-    else {
-      if (temp_light == 1){
-        temp_light = 0;
+    else if (msg == 'L') {
+      msg = Serial.read();
         light_pub.publish(msg);
-      }
-      else if (temp_temp == 1){
-        temp_temp = 0;
-        temperature_pub.publish(msg);
-      }
-      else if (temp_hum == 1){
-        temp_hum = 0;
+      msg = Serial.read();
         humedity_pub.publish(msg);
-      }
+      // msg = Serial.read();
+      //   temperature_pub.publish(msg);     
     }
-
-    light_pub.publish(50);
-      humedity_pub.publish(50);
-      temperature_pub.publish(50);
   }
 
   led_counter++;

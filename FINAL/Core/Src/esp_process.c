@@ -41,28 +41,12 @@ void user_esp(){
 }
 
 void sensor_esp(){
-	switch (++counter_sensor) {
-		case 10:
-			uart_EspSendBytes("L", 1);
-			break;
-		case 20:
-			uart_EspSendBytes("current_light", 4);
-			break;
-		case 30:
-			uart_EspSendBytes("H", 1);
-			break;
-		case 40:
-			uart_EspSendBytes("current_hum", 2);
-			break;
-		case 50:
-			uart_EspSendBytes("T", 1);
-			break;
-		case 60:
-			uart_EspSendBytes("current_temp", 2);
-			counter_sensor = 0;
-			break;
-		default:
-			break;
+	if (++counter_sensor % 100 == 0 ){
+		counter_sensor = 0;
+		uart_EspSendBytes("L", 1);
+		uart_EspSendBytes(current_light, 4);
+		uart_EspSendBytes(current_hum, 2);
+		//uart_EspSendBytes(current_temp, 1);
 	}
 }
 
