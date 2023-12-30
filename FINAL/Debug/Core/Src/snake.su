@@ -1,8 +1,8 @@
-../Core/Src/snake.c:10:6:snake_init	16	static
-../Core/Src/snake.c:25:5:is_collision_food	24	static
-../Core/Src/snake.c:37:5:is_collision	16	static
-../Core/Src/snake.c:49:5:is_eat	8	static
-../Core/Src/snake.c:59:5:get_rand	24	static
-../Core/Src/snake.c:63:6:rand_food	16	static
-../Core/Src/snake.c:75:6:move_snake	16	static
-../Core/Src/snake.c:100:6:reDraw_snake	16	static
+snake.c:10:6:snake_init	16	static
+snake.c:25:5:is_collision_food	24	static
+snake.c:37:5:is_collision	16	static
+snake.c:49:5:is_eat	8	static
+snake.c:59:5:get_rand	24	static
+snake.c:63:6:rand_food	16	static
+snake.c:75:6:move_snake	16	static
+snake.c:100:6:reDraw_snake	16	static

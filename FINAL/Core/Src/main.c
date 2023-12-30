@@ -46,6 +46,7 @@
 #include "interface.h"
 #include "fun_touch.h"
 #include "fsm.h"
+#include "esp_process.h"
 
 /* USER CODE END Includes */
 
@@ -137,16 +138,13 @@ int main(void)
 	  // 50ms task
 	  if(flag_timer2 == 1){
 		  flag_timer2 = 0;
-//		  if(++counterTouch % 2 == 0){
-//			  counterTouch = 0;
-//			  touch_Scan();
-//		  }
 		  touch_Scan();
 		  button_Scan();
 
 		  input_process();
 		  fsm_ingame();
 		  update_7seg_time();
+		  process_esp();
 	  }
     /* USER CODE END WHILE*/
 
@@ -209,7 +207,7 @@ void system_init(){
 	  touch_init();
 	  led7_init();
 	  //ds3231_init();
-	  //uart_init_esp();
+	  uart_init_esp();
 
 	  home_lcd();		// Hien thi man hinh vua moi dau
 	  snake_init();		// Khoi tao ran

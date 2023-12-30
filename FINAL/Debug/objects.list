@@ -4,6 +4,7 @@
 "./Core/Src/buzzer.o"
 "./Core/Src/dma.o"
 "./Core/Src/ds3231.o"
+"./Core/Src/esp_process.o"
 "./Core/Src/fsm.o"
 "./Core/Src/fsmc.o"
 "./Core/Src/fun_touch.o"

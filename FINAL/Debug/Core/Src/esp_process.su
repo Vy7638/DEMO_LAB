@@ -1,0 +1,3 @@
+esp_process.c:14:6:user_esp	8	static
+esp_process.c:43:6:sensor_esp	8	static
+esp_process.c:69:6:process_esp	8	static
