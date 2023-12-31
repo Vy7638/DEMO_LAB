@@ -39,7 +39,6 @@
 #include "buzzer.h"
 #include "touch.h"
 #include "uart.h"
-#include "light_control.h"
 //include for project
 #include "global.h"
 #include "snake.h"

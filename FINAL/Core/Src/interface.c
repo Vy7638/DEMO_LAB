@@ -328,7 +328,19 @@ void reset_7seg(){
 	led7_SetDigit(0, 3, 0);
 }
 
+// Cap nhat thong tin moi truong
+void environment_cal(){
+	sensor_Read();
+	current_temp = sensor_GetTemperature();
+	current_hum = ((float)sensor_GetPotentiometer() / 4095.0) * 100;
+	current_light = 4095 - sensor_GetLight();
+}
+
 void update_7seg_time(){
+	if(flag_timer4 == 1){
+		flag_timer4 = 0;
+		environment_cal();
+	}
 	if(flag_timer5 == 1 && flag_user == FLAG_PLAYING){
 		flag_timer5 = 0;
 		current_time++;

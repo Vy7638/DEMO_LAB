@@ -258,15 +258,6 @@ void input_process(){
 	}
 }
 
-// Cap nhat thong tin moi truong
-void environment_cal(){
-	sensor_Read();
-	current_temp = sensor_GetTemperature();
-	current_hum = ((float)sensor_GetPotentiometer() / 4095.0) * 100;
-	current_light = 4095 - sensor_GetLight();
-	environment_lcd();
-}
-
 // Tinh toan cap nhat diem so
 void score_cal(){
 	current_score = current_score + (400 / counter_time_score) * 5 + 5;
@@ -301,7 +292,7 @@ void fsm_ingame(){
 			counter_time_score++;
 			if(flag_timer4 == 1){
 				flag_timer4 = 0;
-				environment_cal();
+				environment_lcd();
 			}
 			if(flag_timer3 == 1){
 				flag_timer3 = 0;
@@ -312,7 +303,7 @@ void fsm_ingame(){
 			counter_time_score++;
 			if(flag_timer4 == 1){
 				flag_timer4 = 0;
-				environment_cal();
+				environment_lcd();
 			}
 			if(flag_timer3 == 1){
 				flag_timer3 = 0;
@@ -330,7 +321,7 @@ void fsm_ingame(){
 			counter_time_score++;
 			if(flag_timer4 == 1){
 				flag_timer4 = 0;
-				environment_cal();
+				environment_lcd();
 			}
 			if(flag_timer3 == 1){
 				flag_timer3 = 0;

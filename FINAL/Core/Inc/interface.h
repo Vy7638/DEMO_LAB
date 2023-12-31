@@ -13,6 +13,7 @@
 #include "global.h"
 #include "picture.h"
 #include "software_timer.h"
+#include "sensor.h"
 
 #define POS_X_FIRST 65		// Toa do x goc tren ben trai CLASSIC
 #define POS_Y_FIRST 100		// Toa do y goc tren ben trai CLASSIC

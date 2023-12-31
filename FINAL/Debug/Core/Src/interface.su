@@ -28,4 +28,5 @@ interface.c:300:6:point_food_lcd	24	static
 interface.c:304:6:point_clr	24	static
 interface.c:308:6:mode_7seg	8	static
 interface.c:324:6:reset_7seg	8	static
-interface.c:331:6:update_7seg_time	8	static
+interface.c:332:6:environment_cal	8	static
+interface.c:339:6:update_7seg_time	8	static

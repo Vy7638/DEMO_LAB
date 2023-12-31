@@ -4,7 +4,6 @@ fsm.c:25:6:continue_game	8	static
 fsm.c:36:6:input_inGame	8	static
 fsm.c:53:6:input_enterName	16	static
 fsm.c:117:6:input_process	8	static
-fsm.c:262:6:environment_cal	8	static
-fsm.c:271:6:score_cal	8	static
-fsm.c:277:6:inGame	8	static
-fsm.c:298:6:fsm_ingame	8	static
+fsm.c:262:6:score_cal	8	static
+fsm.c:268:6:inGame	8	static
+fsm.c:289:6:fsm_ingame	8	static
