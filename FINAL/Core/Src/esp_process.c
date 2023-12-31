@@ -54,7 +54,7 @@ void sensor_esp(){
 }
 
 void process_esp(){
-	if (++counter_sensor % 60 == 0 ){
+	if (++counter_sensor % 100 == 0 ){
 			counter_sensor = 0;
 	user_esp();
 	sensor_esp();
